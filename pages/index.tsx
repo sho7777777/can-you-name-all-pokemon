@@ -22,20 +22,16 @@ const Home: NextPage = () => {
           ポケモン（英語で）言えるかな？
         </h1>
 
+        <img src={`/pokedex/025.png`} alt="pikachu" />
+
         <p className={styles.description}>
           あなたは{totalAccess}人めのポケモントレーナーです。
         </p>
 
         <div>
-          <Link href="/pokemon-list">
-            <p>ポケモン一覧</p>
-          </Link>
-          <Link href="pokemon-battle">
-            <p>挑戦する</p>
-          </Link>
-          <Link href="ranking">
-            <p>ランキング</p>
-          </Link>
+          <Link href="/pokemon-list"><p>ポケモン一覧</p></Link>
+          <Link href="pokemon-battle"><p>挑戦する</p></Link>
+          <Link href="ranking"><p>ランキング</p></Link>
         </div>
 
       </main>

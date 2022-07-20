@@ -2,8 +2,8 @@ import Link from 'next/link';
 import styles from '../styles/PokemonList.module.css'
 
 //export default function PokemonList(pokemon: { pokemonListEn: string[]; pokemonListJa: string[]; }) {
-export default function PokemonList(pokemon) {
-  console.log(pokemon)
+export default function PokemonList(pokemon: { pokemonList: { No: string, nameJa: string, nameEn: string, Origin: string }[]; }) {
+
   return (
     <div>
       <Link href="/">
@@ -11,7 +11,7 @@ export default function PokemonList(pokemon) {
       </Link>
       <p>ポケモンリスト</p>
       <div className="grid grid-cols-4 gap4">
-        {pokemon.pokemonList.map((pokemon: {}, index: number) => (
+        {pokemon.pokemonList.map((pokemon: { No: string, nameJa: string, nameEn: string, Origin: string }, index: number) => (
           <div key={index}>
             <div className="relative h-60 w-60 m-2 rounded-md overflow-hidden shadow-lg border group perspective">
               <div className="absolute w-full h-full preserve-3d group-hover:my-rotate-y-180 duration-700">
@@ -29,8 +29,8 @@ export default function PokemonList(pokemon) {
                     <img src={`/pokedex/${pokemon.No}.png`} alt="pokemon" className="m-auto items-center" />
                   </div>
                   <div className="py-6 mb-2 h-2/5 bg-green-50">
-                    <p className="text-center my-auto">No. {pokemon.No}</p>
                     <p className="text-center">{pokemon.nameEn}</p>
+                    <p className="text-center">{pokemon.Origin}</p>
                   </div>
                 </div>
               </div>
@@ -47,9 +47,11 @@ export async function getStaticProps() {
   //try {
   const pokemonListJa: string[] = [];
   const pokemonListEn: string[] = [];
-  const pokemonList: [{ No: string, nameJa: string, nameEn: string }] = [];
+  const pokemonList: { No: string, nameJa: string, nameEn: string, Origin: string }[] = [];
+  const url = "http://localhost:3000/api/pokemon";
+  const origin = await fetch(url).then(res => res.json())
   for (var i = 1; i <= 151; i++) {
-    const pokeman: { No: string, nameJa: string, nameEn: string } = {}
+    const pokeman: { No: string, nameJa: string, nameEn: string, Origin: string } = {}
     const url = 'https://pokeapi.co/api/v2/pokemon-species/' + i;
     const res = await fetch(url);
     const data = await res.json();
@@ -58,6 +60,7 @@ export async function getStaticProps() {
     pokeman.No = ("00" + i).slice(-3);
     pokeman.nameJa = data.names[0].name;
     pokeman.nameEn = data.name;
+    pokeman.Origin = origin[i - 1].Origin;
     pokemonList.push(pokeman)
     // pokemonList[i].nameJa = data.names[0].name;
     // pokemonList[i].nameEn = data.name;

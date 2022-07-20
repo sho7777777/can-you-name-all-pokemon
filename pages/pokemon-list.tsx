@@ -13,9 +13,9 @@ export default function PokemonList(pokemon) {
       <div className="grid grid-cols-4 gap4">
         {pokemon.pokemonList.map((pokemon: {}, index: number) => (
           <div key={index}>
-            <div className="relative h-60 w-60 m-2 rounded-md overflow-hidden shadow-lg border">
-              <div className="absolute w-full h-full card-container">
-                <div className="absolute w-60 h-full rounded mb-2 card-front">
+            <div className="relative h-60 w-60 m-2 rounded-md overflow-hidden shadow-lg border group perspective">
+              <div className="absolute w-full h-full preserve-3d group-hover:my-rotate-y-180 duration-700">
+                <div className="absolute w-60 h-full rounded mb-2 backface-hidden">
                   <div className=" h-3/5 flex bg-pink-50">
                     <img src={`/pokedex/${pokemon.No}.png`} alt="pokemon" className="m-auto items-center " />
                   </div>
@@ -24,7 +24,7 @@ export default function PokemonList(pokemon) {
                     <p className="text-center">{pokemon.nameJa}</p>
                   </div>
                 </div>
-                <div className="absolute w-60 h-full rounded mb-2 card-back">
+                <div className="absolute w-60 h-full rounded mb-2 my-rotate-y-180 backface-hidden">
                   <div className=" h-3/5 flex bg-pink-50">
                     <img src={`/pokedex/${pokemon.No}.png`} alt="pokemon" className="m-auto items-center" />
                   </div>

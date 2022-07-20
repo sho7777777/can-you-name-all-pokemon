@@ -2,21 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .card-container {
-  transform-style:preserve-3d;
+  transform-style:preserved-3d;
   transition: all 0.5s ease;
 }
 
 .card-container:hover{
   transform:rotateY(180deg);
+  transform-style:preserved-3d;
+  transition: all 0.5s ease;
 }
 
 .card-front {
-  backface-visibility: hidden;
+  backface-visibility:hidden;
 }
 
 .card-back {
   backface-visibility:hidden;
   transform: rotateY(180deg);
+  cursor:pointer;
 }

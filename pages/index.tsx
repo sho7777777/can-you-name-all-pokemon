@@ -28,9 +28,9 @@ const Home: NextPage = () => {
           あなたは{totalAccess}人めのポケモントレーナーです。
         </p>
 
-        <div>
-          <Link href="/pokemon-list"><p>ポケモン一覧</p></Link>
-          <Link href="pokemon-battle"><p>挑戦する</p></Link>
+        <div className="flex flex-col h-32 gap-4 hover:cursor-pointer">
+          <Link href="/pokemon-list"><p>ポケモン図鑑</p></Link>
+          <Link href="pokemon-battle"><p>言えるかな？</p></Link>
           <Link href="ranking"><p>ランキング</p></Link>
         </div>
 

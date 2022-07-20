@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import styles from '../styles/PokemonList.module.css'
 
 //export default function PokemonList(pokemon: { pokemonListEn: string[]; pokemonListJa: string[]; }) {
 export default function PokemonList(pokemon) {
@@ -9,20 +10,34 @@ export default function PokemonList(pokemon) {
         <p>トップに戻る</p>
       </Link>
       <p>ポケモンリスト</p>
-      {pokemon.pokemonList.map((pokemon: {}, index: number) => (
-        <div key={index}>
-          <div >
-            <img src={`/pokedex/${pokemon.No}.png`} alt="pokemon" />
-            <span>{pokemon.No}</span>
-            <span>{pokemon.nameJa} : </span>
+      <div className="grid grid-cols-4 gap4">
+        {pokemon.pokemonList.map((pokemon: {}, index: number) => (
+          <div key={index}>
+            <div className="relative h-60 w-60 m-2 rounded-md overflow-hidden shadow-lg border">
+              <div className="absolute w-full h-full card-container">
+                <div className="absolute w-60 h-full rounded mb-2 card-front">
+                  <div className=" h-3/5 flex bg-pink-50">
+                    <img src={`/pokedex/${pokemon.No}.png`} alt="pokemon" className="m-auto items-center " />
+                  </div>
+                  <div className="py-6 mb-2 h-2/5 bg-green-50 ">
+                    <p className="text-center my-auto ">No. {pokemon.No}</p>
+                    <p className="text-center">{pokemon.nameJa}</p>
+                  </div>
+                </div>
+                <div className="absolute w-60 h-full rounded mb-2 card-back">
+                  <div className=" h-3/5 flex bg-pink-50">
+                    <img src={`/pokedex/${pokemon.No}.png`} alt="pokemon" className="m-auto items-center" />
+                  </div>
+                  <div className="py-6 mb-2 h-2/5 bg-green-50">
+                    <p className="text-center my-auto">No. {pokemon.No}</p>
+                    <p className="text-center">{pokemon.nameEn}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div >
-            <img src={`/pokedex/${pokemon.No}.png`} alt="pokemon" />
-            <span>{pokemon.No}</span>
-            <span>{pokemon.nameEn}</span>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
 }

@@ -14,7 +14,7 @@ import Pokedex from './pokedex';
 
 const Home: NextPage = (pokedata) => {
 
-  const [isTopPage, setIsTopPage] = useState(true);
+  const [isTopPage, setIsTopPage] = useState(false);
   const [isPokedexPage, setIsPokedexPage] = useState(false);
   const [isPokemonBattlePage, setIsPokemonBattlePage] = useState(false);
   const [isRankingPage, setIsRankingPage] = useState(false);
@@ -38,7 +38,6 @@ const Home: NextPage = (pokedata) => {
 
       <main className={styles.main}>
         {isTopPage && <Top isTopPage={isTopPage} setIsTopPage={setIsTopPage} />}
-
       </main>
 
       {isPokedexPage && <Pokedex pokemonList={pokemon} />}

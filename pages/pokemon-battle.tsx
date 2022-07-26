@@ -1,9 +1,10 @@
 import Link from 'next/link';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { GameCompletedModal } from './gameCompletedModal';
 import { GameOverModal } from './gameOverModal';
 import { RegisterRankingModal } from './registerRankingModal';
 export default function PokemonBattle(pokemon) {
+
 
   const [questionNo, setQuestionNo] = useState(0);
   const [gameOver, setGameOver] = useState(false);
@@ -28,6 +29,7 @@ export default function PokemonBattle(pokemon) {
   }
 
   const shuffledPokemon: { No: string, nameJa: string, nameEn: string, Origin: string }[] = doShuffle(pokemonList);
+
   const correctAnswer = shuffledPokemon[questionNo].nameEn;
   const wrongAnswers = shuffledPokemon.filter(n => n.nameEn != correctAnswer);
   const indexForWrongAnswerA = Math.floor(Math.random() * wrongAnswers.length);
@@ -64,7 +66,7 @@ export default function PokemonBattle(pokemon) {
       {gameCompleted && <GameCompletedModal setGameCompleted={setGameCompleted} setShowRankingModal={setShowRankingModal} />}
       {showRankingModal && <RegisterRankingModal setShowRankingModal={setShowRankingModal} />}
 
-      <p className="text-3xl text-center bg-blue-100 my-2">言えるかな？</p>
+      <p className="text-3xl text-center bg-blue-100 my-2">いえるかな？</p>
       <p className="text-2xl text-center mb-2">現在 {questionNo + 1} 匹め</p>
       <img src={`/pokedex/${pokemonNo}.png`} alt="pokemon image" className="m-auto" />
       <h2 className="text-center">{shuffledPokemon[questionNo].nameJa}</h2>

@@ -1,8 +1,9 @@
-import React, { useState, useRef, useEffect, useCallback, memo, FC, useMemo } from 'react';
+import React, { useState, FC, useMemo } from 'react';
 import { GameCompletedModal } from './gameCompletedModal';
 import { GameOverModal } from './gameOverModal';
 import { RegisterRankingModal } from './registerRankingModal';
 import Layout from '../components/Layout';
+import { useShuffle } from '../hooks/useShuffle';
 
 // Type
 import { Pokemon } from '../types/pokemon';
@@ -14,24 +15,18 @@ export const PokemonBattle = (pokemon: { pokemonList: Pokemon[]; }) => {
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isGameCompleted, setIsGameCompleted] = useState<boolean>(false);
   const [showRankingModal, setShowRankingModal] = useState<boolean>(false);
+  const [shuffleFlg, setShuffleFlag] = useState(true);
+
+  const allPokemonList = pokemon.pokemonList.concat();
+
+  const { doShuffle } = useShuffle();
 
   // 配列は参照渡しのためポケモン図鑑の並びも変わるので、concatで回避
   // 動作確認後はsliceメソッドは消す
   const pokemonList: Pokemon[] = pokemon.pokemonList.concat().slice(0, 5);
   // const pokemonList: Pokemon[] = pokemon.pokemonList.concat();
 
-  const doShuffle = useCallback((array: any) => {
-    for (var i = (array.length - 1); 0 < i; i--) {
-      var r = Math.floor(Math.random() * ((i + 1)));
-      var tmp = array[i];
-      array[i] = array[r];
-      array[r] = tmp;
-    }
-    return array;
-  }, [])
-
-  // const shuffledPokemon: Pokemon[] = doShuffle(pokemonList);
-  const shuffledPokemon: Pokemon[] = useMemo(() => doShuffle(pokemonList), []);
+  const shuffledPokemon: Pokemon[] = useMemo(() => doShuffle(pokemonList), [shuffleFlg]);
 
   console.log("shuffledPokemon", shuffledPokemon)
 
@@ -68,7 +63,9 @@ export const PokemonBattle = (pokemon: { pokemonList: Pokemon[]; }) => {
     <Layout>
       <div className="container mx-auto bg-green-100">
         {/* モーダルメッセージ */}
-        {isGameOver && <GameOverModal questionNo={questionNo} setQuestionNo={setQuestionNo} setIsGameOver={setIsGameOver} />}
+        {isGameOver && <GameOverModal questionNo={questionNo} setQuestionNo={setQuestionNo} setIsGameOver={setIsGameOver}
+          shuffleFlg={shuffleFlg}
+          setShuffleFlg={setShuffleFlag} />}
         {isGameCompleted && <GameCompletedModal setIsGameCompleted={setIsGameCompleted} setShowRankingModal={setShowRankingModal} />}
         {showRankingModal && <RegisterRankingModal setShowRankingModal={setShowRankingModal} questionNo={questionNo} setQuestionNo={setQuestionNo} />}
 

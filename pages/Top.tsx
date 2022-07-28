@@ -7,22 +7,25 @@ export function Top(props) {
   const [totalAccess, setTotalAccess] = useState(0)
 
   return (
-    <div className="bg-pink-100">
-      <h1 className="text-3xl m-4 bg-cyan-100">
-        ポケモン（英語で）言えるかな？
-      </h1>
+    <div className="">
+      <div className="bg-white container mx-auto my-auto">
+        <h1 className="text-2xl md:text-3xl m-4 text-center bg-green-300 ">
+          ポケモン（英語で）いえるかな？
+        </h1>
 
-      <img src={`/pokedex/025.png`} alt="pikachu" />
+        <img src={`/pokedex/025.png`} alt="pikachu" className='mx-auto mb-4' />
 
-      <p>
-        あなたは{totalAccess}人めのポケモントレーナーです。
-      </p>
+        <p className='text-lg md:text-xl text-center'>
+          あなたは{totalAccess}人めのポケモントレーナーです
+        </p>
 
-      <div className="flex flex-col h-32 gap-4 hover:cursor-pointer">
-        <Link href="/pokemon-list"><p>ポケモン図鑑</p></Link>
-        <Link href="pokemon-battle"><p onClick={() => alert("clicked")}>言えるかな？</p></Link>
-        <Link href="ranking"><p>ランキング</p></Link>
+        <div className="flex flex-col justify-center items-center h-32 gap-4 hover:cursor-pointer bg-cyan-200 opacity-50">
+          <Link href="/pokedex"><p>ポケモンずかん</p></Link>
+          <Link href="/pokemon-battle"><p>いえるかな？</p></Link>
+          <Link href="/ranking"><p>ランキング</p></Link>
+        </div>
       </div>
     </div>
+
   )
 }

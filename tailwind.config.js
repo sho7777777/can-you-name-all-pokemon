@@ -1,3 +1,4 @@
+const { PRERENDER_REVALIDATE_ONLY_GENERATED_HEADER } = require("next/dist/server/api-utils")
 const plugin = require("tailwindcss/plugin")
 
 const Myclass = plugin(function ({ addUtilities }) {

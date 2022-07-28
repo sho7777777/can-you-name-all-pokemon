@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .sort-btn {
+    @apply bg-gradient-to-r from-cyan-50 p-1 to-cyan-200 rounded m-2 drop-shadow-md hover:to-cyan-100;
+  }
+  .option-btn {
+    @apply rounded  bg-green-300 p-1 drop-shadow-md hover:bg-green-200 hover:text-rose-400 w-28;
+  }
+  .back-to-top-btn {
+    @apply text-black bg-red-500 hover:bg-red-400 m-2 rounded p-1;
+  }
+}

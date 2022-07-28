@@ -1,83 +1,132 @@
-import Link from 'next/link';
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback, memo, FC, useMemo } from 'react';
 import { GameCompletedModal } from './gameCompletedModal';
 import { GameOverModal } from './gameOverModal';
 import { RegisterRankingModal } from './registerRankingModal';
-export default function PokemonBattle(pokemon) {
+import Layout from '../components/Layout';
 
+// Type
+import { Pokemon } from '../types/pokemon';
+import Image from 'next/image';
 
-  const [questionNo, setQuestionNo] = useState(0);
-  const [gameOver, setGameOver] = useState(false);
-  const [gameCompleted, setGameCompleted] = useState(false);
-  const [showRankingModal, setShowRankingModal] = useState(false);
+export const PokemonBattle = (pokemon: { pokemonList: Pokemon[]; }) => {
 
+  const [questionNo, setQuestionNo] = useState<number>(0);
+  const [isGameOver, setIsGameOver] = useState<boolean>(false);
+  const [isGameCompleted, setIsGameCompleted] = useState<boolean>(false);
+  const [showRankingModal, setShowRankingModal] = useState<boolean>(false);
 
-  // console.log("pokemon", pokemon.pokemonList)
-  // 参照渡しのためポケモン図鑑の並びも変わるので、concatで回避
-  // const pokemonList: { No: string, nameJa: string, nameEn: string, Origin: string }[] = pokemon.pokemonList.concat();
-  const pokemonList: { No: string, nameJa: string, nameEn: string, Origin: string }[] = pokemon.pokemonList.concat().slice(0, 5);
+  // 配列は参照渡しのためポケモン図鑑の並びも変わるので、concatで回避
+  // 動作確認後はsliceメソッドは消す
+  const pokemonList: Pokemon[] = pokemon.pokemonList.concat().slice(0, 5);
+  // const pokemonList: Pokemon[] = pokemon.pokemonList.concat();
 
-  // 配列の中身をシャッフルする
-  const doShuffle = (pokemon: {}[]) => {
-    for (var i = (pokemon.length - 1); 0 < i; i--) {
+  const doShuffle = useCallback((array: any) => {
+    for (var i = (array.length - 1); 0 < i; i--) {
       var r = Math.floor(Math.random() * ((i + 1)));
-      var tmp = pokemon[i];
-      pokemon[i] = pokemon[r];
-      pokemon[r] = tmp;
+      var tmp = array[i];
+      array[i] = array[r];
+      array[r] = tmp;
     }
-    return pokemon;
-  }
+    return array;
+  }, [])
 
-  const shuffledPokemon: { No: string, nameJa: string, nameEn: string, Origin: string }[] = doShuffle(pokemonList);
+  // const shuffledPokemon: Pokemon[] = doShuffle(pokemonList);
+  const shuffledPokemon: Pokemon[] = useMemo(() => doShuffle(pokemonList), []);
+
+  console.log("shuffledPokemon", shuffledPokemon)
 
   const correctAnswer = shuffledPokemon[questionNo].nameEn;
   const wrongAnswers = shuffledPokemon.filter(n => n.nameEn != correctAnswer);
-  const indexForWrongAnswerA = Math.floor(Math.random() * wrongAnswers.length);
-  const indexForWrongAnswerB = Math.floor(Math.random() * wrongAnswers.length);
-  const indexForWrongAnswerC = Math.floor(Math.random() * wrongAnswers.length);
 
-  const wrongAnswerA = wrongAnswers[indexForWrongAnswerA].nameEn;
-  const wrongAnswerB = wrongAnswers[indexForWrongAnswerB].nameEn;
-  const wrongAnswerC = wrongAnswers[indexForWrongAnswerC].nameEn;
+  const wrongAnswerA = wrongAnswers[0].nameEn;
+  const wrongAnswerB = wrongAnswers[1].nameEn;
+  const wrongAnswerC = wrongAnswers[2].nameEn;
 
-  const option = [correctAnswer, wrongAnswerA, wrongAnswerB, wrongAnswerC];
+  const option: string[] = [correctAnswer, wrongAnswerA, wrongAnswerB, wrongAnswerC];
 
+
+  // 選択肢を混ぜる
   const shuffledOption = doShuffle(option)
-  const pokemonNo = shuffledPokemon[questionNo].No;
+  const [optionA, optionB, optionC, optionD] = [...shuffledOption];
 
-  const checkAnswer = (e) => {
-    e.target.value === correctAnswer ? correctAnswerSelected() : setGameOver(true);
+  // 画像取得に使用
+  const currentPokemonNo = shuffledPokemon[questionNo].No;
+
+  const checkAnswer = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    (e.target as HTMLButtonElement).value === correctAnswer ? correctAnswerSelected() : setIsGameOver(true);
   }
 
   const correctAnswerSelected = () => {
-    // alert("good job!!");
-    setQuestionNo(questionNo + 1)
-    if (questionNo + 1 === shuffledPokemon.length) {
-      setGameCompleted(true);
-      setQuestionNo(0);
-    }
+
+    questionNo + 1 === shuffledPokemon.length ? (
+      setIsGameCompleted(true),
+      setQuestionNo(questionNo)
+    ) : setQuestionNo(questionNo + 1)
   }
 
   return (
-    <div className="container mx-auto mt-2">
+    <Layout>
+      <div className="container mx-auto bg-green-100">
+        {/* モーダルメッセージ */}
+        {isGameOver && <GameOverModal questionNo={questionNo} setQuestionNo={setQuestionNo} setIsGameOver={setIsGameOver} />}
+        {isGameCompleted && <GameCompletedModal setIsGameCompleted={setIsGameCompleted} setShowRankingModal={setShowRankingModal} />}
+        {showRankingModal && <RegisterRankingModal setShowRankingModal={setShowRankingModal} questionNo={questionNo} setQuestionNo={setQuestionNo} />}
 
-      {/* Modal Message */}
-      {gameOver && <GameOverModal questionNo={questionNo} setGameOver={setGameOver} setQuestionNo={setQuestionNo} />}
-      {gameCompleted && <GameCompletedModal setGameCompleted={setGameCompleted} setShowRankingModal={setShowRankingModal} />}
-      {showRankingModal && <RegisterRankingModal setShowRankingModal={setShowRankingModal} />}
+        <div className="h-screen pt-32">
+          <p className="text-3xl text-center my-4">いえるかな？</p>
+          <p className="text-2xl text-center mb-2">現在 {questionNo + 1} 匹め</p>
 
-      <p className="text-3xl text-center bg-blue-100 my-2">いえるかな？</p>
-      <p className="text-2xl text-center mb-2">現在 {questionNo + 1} 匹め</p>
-      <img src={`/pokedex/${pokemonNo}.png`} alt="pokemon image" className="m-auto" />
-      <h2 className="text-center">{shuffledPokemon[questionNo].nameJa}</h2>
-      {/* <div className="grid grid-cols-2 bg-green-200 w-96 m-auto"> */}
-      <div className="flex flex-col justify-between items-center w-3/4 max-w-lg mx-auto gap-y-2 md:flex-row">
-        <button type="button" value={shuffledOption[0]} onClick={checkAnswer} className="rounded  bg-green-300 p-1 drop-shadow-md hover:bg-green-200 hover:text-rose-400 w-28">{shuffledOption[0]}</button>
-        <button type="button" value={shuffledOption[1]} onClick={checkAnswer} className="rounded  bg-green-300 p-1 drop-shadow-md hover:bg-green-200 hover:text-rose-400 w-28">{shuffledOption[1]}</button>
-        <button type="button" value={shuffledOption[2]} onClick={checkAnswer} className="rounded  bg-green-300 p-1 drop-shadow-md hover:bg-green-200 hover:text-rose-400 w-28">{shuffledOption[2]}</button>
-        <button type="button" value={shuffledOption[3]} onClick={checkAnswer} className="rounded  bg-green-300 p-1 drop-shadow-md hover:bg-green-200 hover:text-rose-400 w-28">{shuffledOption[3]}</button>
+          <div className="text-center">
+            <Image src={`/pokedex/${currentPokemonNo}.png`} width={100} height={100} alt="pokemon image" />
+          </div>
+
+          <h2 className="text-center my-2">{shuffledPokemon[questionNo].nameJa}</h2>
+
+          <div className="flex flex-col justify-between items-center w-3/4 max-w-lg mx-auto gap-y-2 md:flex-row">
+            <button type="button" value={optionA} onClick={checkAnswer} className="option-btn">{optionA}</button>
+            <button type="button" value={optionB} onClick={checkAnswer} className="option-btn">{optionB}</button>
+            <button type="button" value={optionC} onClick={checkAnswer} className="option-btn">{optionC}</button>
+            <button type="button" value={optionD} onClick={checkAnswer} className="option-btn">{optionD}</button>
+          </div>
+        </div>
+
       </div>
-    </div>
-
+    </Layout>
   )
+}
+
+export default PokemonBattle;
+
+export async function getStaticProps() {
+
+  const pokemonList: { No: string, nameJa: string, nameEn: string, origin: string }[] = [];
+  // origin取得用API
+  const url = "http://localhost:3000/api/pokemon";
+
+  try {
+
+    const origin = await fetch(url).then(res => res.json());
+
+    for (var i = 1; i <= 151; i++) {
+      const pokeman: Pokemon = { No: '', nameJa: '', nameEn: '', origin: '' };
+
+      // nameJa, nameEn取得用API
+      const url = 'https://pokeapi.co/api/v2/pokemon-species/' + i;
+      const res = await fetch(url);
+      const data = await res.json();
+
+      pokeman.No = ("00" + i).slice(-3);
+      pokeman.nameJa = data.names[0].name;
+      pokeman.nameEn = data.name;
+      pokeman.origin = origin[i - 1].Origin;
+      pokemonList.push(pokeman)
+    }
+    return {
+      props: {
+        pokemonList
+      }
+    }
+  } catch (err) {
+    console.error(err)
+  }
 }

@@ -1,20 +1,25 @@
 import { useRouter } from "next/router";
 import { FC } from 'react';
+import { useShuffle } from '../hooks/useShuffle';
 
 type Props = {
   questionNo: number;
   setQuestionNo: (questionNo: number) => void;
   setIsGameOver: (isGameOver: boolean) => void;
+  shuffleFlg: boolean;
+  setShuffleFlg: (shuffleflg: boolean) => void;
 }
 
 export const GameOverModal: FC<Props> = (props) => {
 
-  const { questionNo, setQuestionNo, setIsGameOver } = props;
+  const { questionNo, setQuestionNo, setIsGameOver, shuffleFlg, setShuffleFlg } = props;
   const router = useRouter()
+  const { doShuffle } = useShuffle();
 
   const restart = () => {
     setQuestionNo(0);
     setIsGameOver(false);
+    setShuffleFlg(!shuffleFlg)
   }
 
   const returnTopPage = () => {

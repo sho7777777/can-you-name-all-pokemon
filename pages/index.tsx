@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 import { Header } from './Header'
-import { Top } from './Top';
+import { Top } from '../components/Top';
 import Layout from '../components/Layout'
 
 // const Home: NextPage = (pokedata) => {

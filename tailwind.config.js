@@ -14,7 +14,7 @@ const Myclass = plugin(function ({ addUtilities }) {
     },
     ".backface-hidden": {
       backfaceVisibility: "hidden"
-    },
+    }
   })
 })
 
@@ -25,45 +25,7 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      animation: {
-        slide: 'slide 20s infinite'
-      },
-      keyframes: {
-        slide: {
-          '0%': {
-            transform: "translateX(0)"
-          },
-          '20%': {
-            transform: "translateX(0)"
-          },
-          '25%': {
-            transform: "translateX(-100%)"
-          },
-          '40%': {
-            transform: "translateX(-100%)"
-          },
-          '45%': {
-            transform: "translateX(-200%)"
-          },
-          '60%': {
-            transform: "translateX(-200%)"
-          },
-          '65%': {
-            transform: "translateX(-300%)"
-          },
-          '80%': {
-            transform: "translateX(-300%)"
-          },
-          '85%': {
-            transform: "translateX(-400%)"
-          },
-          '100%': {
-            transform: "translateX(-400%)"
-          }
-        }
-      }
-    },
+    extend: {},
     screens: {
       sm: '480px',
       md: '768px',

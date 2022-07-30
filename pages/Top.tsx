@@ -1,10 +1,20 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper';
+import 'swiper/css'
 
+export function Top() {
 
-export function Top(props) {
+  const totalPokemon = 151;
+  const pokemonImage: string[] = ['025'];
+  const [totalAccess, setTotalAccess] = useState(0);
 
-  const [totalAccess, setTotalAccess] = useState(0)
+  for (var i = 1; i < 100; i++) {
+    const pokeIndex = ('00' + Math.ceil(Math.random() * totalPokemon)).slice(-3)
+    pokemonImage.push(pokeIndex)
+  }
 
   return (
     <div className="">
@@ -13,7 +23,22 @@ export function Top(props) {
           ポケモン（英語で）いえるかな？
         </h1>
 
-        <img src={`/pokedex/025.png`} alt="pikachu" className='mx-auto mb-4' />
+        <div className='w-full bg-cyan-200'>
+          <Swiper
+            spaceBetween={0}
+            centeredSlides={true}
+            autoplay={{ delay: 4000 }}
+            modules={[Autoplay]}
+          >
+            {pokemonImage.map((pokemon, index) => (
+              <SwiperSlide key={index} className='text-center'>
+                <Image src={`/pokedex/${pokemon}.png`} alt="pokemon" width={100} height={100} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+        </div>
+
 
         <p className='text-lg md:text-xl text-center'>
           あなたは{totalAccess}人めのポケモントレーナーです
@@ -25,7 +50,7 @@ export function Top(props) {
           <Link href="/ranking"><p>ランキング</p></Link>
         </div>
       </div>
-    </div>
+    </div >
 
   )
 }

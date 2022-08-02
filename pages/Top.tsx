@@ -19,11 +19,11 @@ export function Top() {
   return (
     <div className="">
       <div className="bg-white container mx-auto my-auto">
-        <h1 className="text-2xl md:text-3xl m-4 text-center bg-green-300 ">
+        <h1 className="text-2xl md:text-3xl m-4 text-center ">
           ポケモン（英語で）いえるかな？
         </h1>
 
-        <div className='w-full bg-cyan-200'>
+        <div className='w-full'>
           <Swiper
             spaceBetween={0}
             centeredSlides={true}
@@ -31,8 +31,11 @@ export function Top() {
             modules={[Autoplay]}
           >
             {pokemonImage.map((pokemon, index) => (
-              <SwiperSlide key={index} className='text-center'>
-                <Image src={`/pokedex/${pokemon}.png`} alt="pokemon" width={100} height={100} />
+              <SwiperSlide key={index}>
+                <div>
+                  <img src={`/pokedex/${pokemon}.png`} alt="pokemon" className="mx-auto my-2 w-20 h-20 md:w-28 md:h-28" />
+                </div>
+
               </SwiperSlide>
             ))}
           </Swiper>
@@ -44,7 +47,7 @@ export function Top() {
           あなたは{totalAccess}人めのポケモントレーナーです
         </p>
 
-        <div className="flex flex-col justify-center items-center h-32 gap-4 hover:cursor-pointer bg-cyan-200 opacity-50">
+        <div className="flex flex-col justify-center items-center h-32 gap-4 hover:cursor-pointer ">
           <Link href="/pokedex"><p>ポケモンずかん</p></Link>
           <Link href="/pokemon-battle"><p>いえるかな？</p></Link>
           <Link href="/ranking"><p>ランキング</p></Link>

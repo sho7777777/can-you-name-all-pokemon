@@ -28,8 +28,6 @@ export const PokemonBattle = (pokemon: { pokemonList: Pokemon[]; }) => {
 
   const shuffledPokemon: Pokemon[] = useMemo(() => doShuffle(pokemonList), [shuffleFlg]);
 
-  console.log("shuffledPokemon", shuffledPokemon)
-
   const correctAnswer = shuffledPokemon[questionNo].nameEn;
   const wrongAnswers = shuffledPokemon.filter(n => n.nameEn != correctAnswer);
 
@@ -64,10 +62,10 @@ export const PokemonBattle = (pokemon: { pokemonList: Pokemon[]; }) => {
       <div className="container mx-auto bg-green-100">
         {/* モーダルメッセージ */}
         {isGameOver && <GameOverModal questionNo={questionNo} setQuestionNo={setQuestionNo} setIsGameOver={setIsGameOver}
-          shuffleFlg={shuffleFlg}
-          setShuffleFlg={setShuffleFlag} />}
+          shuffleFlg={shuffleFlg} setShuffleFlg={setShuffleFlag} setShowRankingModal={setShowRankingModal} />}
         {isGameCompleted && <GameCompletedModal setIsGameCompleted={setIsGameCompleted} setShowRankingModal={setShowRankingModal} />}
-        {showRankingModal && <RegisterRankingModal setShowRankingModal={setShowRankingModal} questionNo={questionNo} setQuestionNo={setQuestionNo} />}
+        {showRankingModal && <RegisterRankingModal setShowRankingModal={setShowRankingModal} questionNo={questionNo} setQuestionNo={setQuestionNo} setIsGameOver={setIsGameOver}
+          shuffleFlg={shuffleFlg} setShuffleFlg={setShuffleFlag} />}
 
         <div className="h-screen pt-32">
           <p className="text-3xl text-center my-4">いえるかな？</p>

@@ -29,7 +29,6 @@ export default function Ranking() {
                   <th scope="col" className='w-1/4 text-gray-800'>#</th>
                   <th scope="col" className='w-1/4 text-gray-80'>なまえ</th>
                   <th scope="col" className='w-1/4 text-gray-80'>とくてん</th>
-                  <th scope="col" className='w-1/4 text-gray-80'>タイム</th>
                 </tr>
               </thead>
               <tbody className='border-b'>
@@ -43,7 +42,6 @@ export default function Ranking() {
                     <td>{index + 1}</td>
                     <td>{data.name}</td>
                     <td>{data.score}</td>
-                    <td>{ }</td>
                   </tr>
                 ))}
               </tbody>

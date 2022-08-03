@@ -1,11 +1,14 @@
-import Image from 'next/image';
 import Link from 'next/link';
+
+// Hook
 import { useState } from 'react';
+
+// Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper';
 import 'swiper/css'
 
-export function Top() {
+export const Top = () => {
 
   const totalPokemon = 151;
   const pokemonImage: string[] = ['025'];

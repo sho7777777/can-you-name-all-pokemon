@@ -1,25 +1,30 @@
 // Component
 import Link from 'next/link';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 // Constant
-import { totalPokemon } from '../const/constants'
+import { totalPokemon } from '../const/constants';
 
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper';
 import 'swiper/css'
-import Image from 'next/image';
 
 
 export const Top = () => {
 
-  const pokemonImage: string[] = ['025'];
-  const indexForSwiper = 100;
-
+  const [pokemonImage, setPokemonImage] = useState<string[]>([]);
+  const imageIndex: string[] = ['025']
+  const indexForSwiper = 50;
   for (var i = 1; i < indexForSwiper; i++) {
     const pokeIndex = ('00' + Math.ceil(Math.random() * totalPokemon)).slice(-3)
-    pokemonImage.push(pokeIndex)
+    imageIndex.push(pokeIndex)
   }
+
+  useEffect(() => {
+    setPokemonImage(imageIndex);
+  }, [])
 
   return (
     <div className="bg-white container mx-auto h-screen pt-20">

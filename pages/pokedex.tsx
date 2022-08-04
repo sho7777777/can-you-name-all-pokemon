@@ -47,7 +47,7 @@ export default function Pokedex(pokemon: { pokemonList: Pokemon[]; }) {
         <h1 className="text-3xl text-gray-600 text-center  my-3">ポケモンずかん</h1>
 
         {/* ---Sort Area---  */}
-        <div className="container grid grid-cols-4 mx-auto justify-between md:grid-cols-8">
+        <div className="container grid grid-cols-4 mx-auto text-center md:grid-cols-8">
           {sortButtonProperty.map((buttonProperty, index) => (
             <Button key={index} buttonStyle='btn-sort' onClick={filterPokemon} value={buttonProperty.value} text={buttonProperty.text} />
           ))}

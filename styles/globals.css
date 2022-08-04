@@ -4,7 +4,7 @@
 
 @layer base {
   .btn-sort {
-    @apply rounded drop-shadow-md hover:text-emerald-400;
+    @apply rounded drop-shadow-md hover:text-emerald-400 w-20;
   }
   .option-btn {
     @apply rounded  bg-green-300 p-1 drop-shadow-md hover:bg-green-200 hover:text-rose-400 w-28;

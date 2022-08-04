@@ -71,7 +71,7 @@ export default function PokemonBattle(pokemon: { pokemonList: Pokemon[]; }) {
 
   return (
     <Layout>
-      <div className="container mx-auto bg-green-100">
+      <div className="container mx-auto">
         {/* ---modal--- */}
         {isGameOver && <GameOverModal questionNo={questionNo} setQuestionNo={setQuestionNo} setIsGameOver={setIsGameOver}
           shuffleFlg={shuffleFlg} setShuffleFlg={setShuffleFlag} setShowRankingModal={setShowRankingModal} />}

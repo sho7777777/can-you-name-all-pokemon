@@ -55,7 +55,7 @@ export default function Pokedex(pokemon: { pokemonList: Pokemon[]; }) {
 
         {/* ---Pokedex--- */}
         <div className="container mx-auto">
-          <div className="relative mx-auto grid grid-cols-1 bg-violet-300 place-items-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="relative mx-auto grid grid-cols-1 place-items-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {pokemonList.map((pokemon: Pokemon, index: number) => (
               <div key={index}>
                 <div className="relative h-60 w-60 m-2 overflow-hidden rounded-md shadow-lg border group perspective">

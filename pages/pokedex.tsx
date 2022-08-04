@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Layout } from '../components/Layout';
 
 // Constant
-import { totalPokemon, url, urlSpiecies } from '../const/constants';
+import { totalPokemon, sortButtonProperty } from '../const/constants';
 
 // Hook
 import { useState } from 'react';
@@ -13,6 +13,7 @@ import { loadPokemon } from '../lib/load-pokemon';
 
 // Type
 import { Pokemon } from '../types/pokemon';
+import { Button } from '../components/Button';
 
 
 export default function Pokedex(pokemon: { pokemonList: Pokemon[]; }) {
@@ -47,22 +48,9 @@ export default function Pokedex(pokemon: { pokemonList: Pokemon[]; }) {
 
         {/* ---Sort Area---  */}
         <div className="container grid grid-cols-4 mx-auto justify-between md:grid-cols-8">
-          <button type="button" value="151" className='btn-sort ' onClick={filterPokemon}>すべて</button>
-          <button type="button" value="0" className='btn-sort' onClick={filterPokemon}>1~10</button>
-          <button type="button" value="10" className='btn-sort' onClick={filterPokemon}>11~20</button>
-          <button type="button" value="20" className='btn-sort' onClick={filterPokemon}>21~30</button>
-          <button type="button" value="30" className='btn-sort' onClick={filterPokemon}>31~40</button>
-          <button type="button" value="40" className='btn-sort' onClick={filterPokemon}>41~50</button>
-          <button type="button" value="50" className='btn-sort' onClick={filterPokemon}>51~60</button>
-          <button type="button" value="60" className='btn-sort' onClick={filterPokemon}>61~70</button>
-          <button type="button" value="70" className='btn-sort' onClick={filterPokemon}>71~80</button>
-          <button type="button" value="80" className='btn-sort' onClick={filterPokemon}>81~90</button>
-          <button type="button" value="90" className='btn-sort' onClick={filterPokemon}>91~100</button>
-          <button type="button" value="100" className='btn-sort' onClick={filterPokemon}>101~110</button>
-          <button type="button" value="110" className='btn-sort' onClick={filterPokemon}>111~120</button>
-          <button type="button" value="120" className='btn-sort' onClick={filterPokemon}>121~130</button>
-          <button type="button" value="130" className='btn-sort' onClick={filterPokemon}>131~140</button>
-          <button type="button" value="140" className='btn-sort' onClick={filterPokemon}>141~151</button>
+          {sortButtonProperty.map((buttonProperty, index) => (
+            <Button key={index} buttonStyle='btn-sort' onClick={filterPokemon} value={buttonProperty.value} text={buttonProperty.text} />
+          ))}
         </div>
 
         {/* ---Pokedex--- */}
@@ -82,8 +70,10 @@ export default function Pokedex(pokemon: { pokemonList: Pokemon[]; }) {
                       </div>
                     </div>
                     <div className="absolute w-60 h-full rounded mb-2 my-rotate-y-180 backface-hidden">
-                      <div className="h-3/5 flex bg-gradient-to-r from-pink-50 to-pink-200 items-center justify-center">
-                        <Image src={`/pokedex/${pokemon.No}.png`} width={100} height={100} alt="pokemon" className="m-auto" />
+                      <div className="h-3/5 flex bg-gradient-to-r from-pink-50 to-pink-200 items-center justify-center"
+                      >
+                        <Image src={`/pokedex/${pokemon.No}.png`} width={100} height={100} alt="pokemon" className="m-auto"
+                        />
                       </div>
                       <div className="p-2 mb-2 h-2/5 bg-gradient-to-r from-green-50 to-green-200 ">
                         <p className="text-center">{pokemon.nameEn}</p>

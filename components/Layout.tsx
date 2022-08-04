@@ -1,9 +1,14 @@
+// Component
 import Head from 'next/head';
+import { FC, ReactNode } from 'react';
 import { Footer } from './Footer';
 import { Header } from './Header';
 
+type Props = {
+  children: ReactNode;
+}
 
-export default function Layout({ children }) {
+export const Layout: FC<Props> = ({ children }) => {
   return (
     <div className="h-screen bg-violet-400">
       <Head>

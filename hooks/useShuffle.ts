@@ -1,4 +1,4 @@
-import { Pokemon } from "../types/pokemon"
+
 
 export const useShuffle = () => {
   

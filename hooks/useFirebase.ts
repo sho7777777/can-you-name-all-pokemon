@@ -2,30 +2,35 @@ import { collection, doc, getDocs, query, orderBy, limit, addDoc } from 'firebas
 import { db } from "../fire";
 import { useState } from 'react';
 
+type User = {
+  name: string;
+  score: number;
+}
+
 export const useFirebase = () => {
 
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState<User[]>([]);
   const userRef = collection(db, "score")
 
   const getRanking = async () => {
     
-    // const querySnapshot = await getDocs(userRef);
-    const q = query(userRef, orderBy("score", "desc"), limit(20));
-    const querySnapshot = await getDocs(q)
-    const users: {}[] = [];
-
-    querySnapshot.forEach((doc) => {
-      const soleUser = {
-        name: doc.data().name,
-        score:doc.data().score,
-      }
-      // console.log(soleUser)
-      users.push(soleUser);
-      
-    })
-    // console.log(users)
-    setUser(users)
-    // console.log(user)
+    try{
+      const q = query(userRef, orderBy("score", "desc"), limit(20));
+      const querySnapshot = await getDocs(q)
+      const users: User[] = [];
+  
+      querySnapshot.forEach((doc) => {
+        const soleUser = {
+          name: doc.data().name,
+          score:doc.data().score,
+        }
+        users.push(soleUser);
+      })
+      setUser(users)
+    }catch(e){
+      alert("Sorry")
+    }
+    
   }
 
   const addRanking = async (name: string, score: number) => {

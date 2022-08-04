@@ -1,21 +1,36 @@
+// Component
 import Image from 'next/image';
-import { useState } from 'react';
 import Layout from '../components/Layout';
+
+// Constant
+import { totalPokemon, url, urlSpiecies } from '../const/constants';
+
+// Hook
+import { useState } from 'react';
+
+// lib
+import { loadPokemon } from '../lib/load-pokemon';
+
+// Type
 import { Pokemon } from '../types/pokemon';
+
 
 export default function Pokedex(pokemon: { pokemonList: Pokemon[]; }) {
 
   const [pokemonList, setPokemonList] = useState(pokemon.pokemonList)
   const allPokemon = pokemon.pokemonList;
 
+  // 10匹ずつフィルタリング
   const filterPokemon = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const sortValue = parseInt((e.target as HTMLInputElement).value);
+    const sortIndexForMew = 140;
 
-    if (sortValue == 151) {
+    if (sortValue == totalPokemon) {
       setPokemonList(allPokemon)
     } else {
       const pokemonListForSlice = pokemon.pokemonList;
-      if (sortValue == 140) {
+      if (sortValue == sortIndexForMew) {
+        // 最後のスライスはミュウ(151匹目）まで含める
         const slicedPokemonList = pokemonListForSlice.slice(sortValue, sortValue + 11)
         setPokemonList(slicedPokemonList)
       } else {
@@ -28,11 +43,11 @@ export default function Pokedex(pokemon: { pokemonList: Pokemon[]; }) {
   return (
     <div>
       <Layout>
-        <h1 className="text-3xl text-green-300 text-center  my-3">ポケモンずかん</h1>
+        <h1 className="text-3xl text-gray-600 text-center  my-3">ポケモンずかん</h1>
 
-        {/* ソートボタン */}
+        {/* ---Sort Area---  */}
         <div className="container grid grid-cols-4 mx-auto justify-between md:grid-cols-8">
-          <button type="button" value="151" className='sort-btn' onClick={filterPokemon}>すべて</button>
+          <button type="button" value="151" className='sort-btn ' onClick={filterPokemon}>すべて</button>
           <button type="button" value="0" className='sort-btn' onClick={filterPokemon}>1~10</button>
           <button type="button" value="10" className='sort-btn' onClick={filterPokemon}>11~20</button>
           <button type="button" value="20" className='sort-btn' onClick={filterPokemon}>21~30</button>
@@ -50,6 +65,7 @@ export default function Pokedex(pokemon: { pokemonList: Pokemon[]; }) {
           <button type="button" value="140" className='sort-btn' onClick={filterPokemon}>141~151</button>
         </div>
 
+        {/* ---Pokedex--- */}
         <div className="container mx-auto">
           <div className="relative mx-auto grid grid-cols-1 bg-violet-300 place-items-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {pokemonList.map((pokemon: Pokemon, index: number) => (
@@ -57,7 +73,7 @@ export default function Pokedex(pokemon: { pokemonList: Pokemon[]; }) {
                 <div className="relative h-60 w-60 m-2 overflow-hidden rounded-md shadow-lg border group perspective">
                   <div className="absolute w-full h-full preserve-3d group-hover:my-rotate-y-180 duration-700">
                     <div className="absolute w-full h-full rounded mb-2 backface-hidden">
-                      <div className=" h-3/5 flex bg-gradient-to-r from-pink-50 to-pink-200 items-center justify-center">
+                      <div className="h-3/5 flex bg-gradient-to-r from-pink-50 to-pink-200 items-center justify-center">
                         <Image src={`/pokedex/${pokemon.No}.png`} width={100} height={100} alt="pokemon" className="m-auto" />
                       </div>
                       <div className="py-6 mb-2 h-2/5 bg-gradient-to-r from-green-50 to-green-200">
@@ -66,12 +82,12 @@ export default function Pokedex(pokemon: { pokemonList: Pokemon[]; }) {
                       </div>
                     </div>
                     <div className="absolute w-60 h-full rounded mb-2 my-rotate-y-180 backface-hidden">
-                      <div className=" h-3/5 flex bg-gradient-to-r from-pink-50 to-pink-200 items-center justify-center">
+                      <div className="h-3/5 flex bg-gradient-to-r from-pink-50 to-pink-200 items-center justify-center">
                         <Image src={`/pokedex/${pokemon.No}.png`} width={100} height={100} alt="pokemon" className="m-auto" />
                       </div>
-                      <div className="p-3 mb-2 h-2/5 bg-gradient-to-r from-green-50 to-green-200 ">
+                      <div className="p-2 mb-2 h-2/5 bg-gradient-to-r from-green-50 to-green-200 ">
                         <p className="text-center">{pokemon.nameEn}</p>
-                        <p className="text-center text-sm">{pokemon.origin}</p>
+                        <p className="text-center text-sm mt-1">{pokemon.origin}</p>
                       </div>
                     </div>
                   </div>
@@ -87,28 +103,10 @@ export default function Pokedex(pokemon: { pokemonList: Pokemon[]; }) {
 
 export async function getStaticProps() {
 
-  const pokemonList: { No: string, nameJa: string, nameEn: string, origin: string }[] = [];
-  // origin取得用API
-  const url = "http://localhost:3000/api/pokemon";
+  const pokemonList: Pokemon[] = [];
 
   try {
-
-    const origin = await fetch(url).then(res => res.json());
-
-    for (var i = 1; i <= 151; i++) {
-      const pokeman: Pokemon = { No: '', nameJa: '', nameEn: '', origin: '' };
-
-      // nameJa, nameEn取得用API
-      const url = 'https://pokeapi.co/api/v2/pokemon-species/' + i;
-      const res = await fetch(url);
-      const data = await res.json();
-
-      pokeman.No = ("00" + i).slice(-3);
-      pokeman.nameJa = data.names[0].name;
-      pokeman.nameEn = data.name;
-      pokeman.origin = origin[i - 1].Origin;
-      pokemonList.push(pokeman)
-    }
+    const pokemonList = await loadPokemon();
     return {
       props: {
         pokemonList

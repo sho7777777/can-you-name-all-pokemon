@@ -27,7 +27,7 @@ export default function PokemonBattle(pokemon: { pokemonList: Pokemon[]; }) {
 
   // 配列は参照渡しのためポケモン図鑑の並びも変わるので、concatで回避
   // 動作確認後はsliceメソッドは消す
-  const pokemonList: Pokemon[] = pokemon.pokemonList.concat().slice(0, 5);
+  const pokemonList: Pokemon[] = pokemon.pokemonList.concat().slice(0, 6);
   // const pokemonList: Pokemon[] = pokemon.pokemonList.concat();
 
   const [shuffledPokemon, setShuffledPokemon] = useState<Pokemon[]>(pokemonList)
@@ -64,11 +64,10 @@ export default function PokemonBattle(pokemon: { pokemonList: Pokemon[]; }) {
     setShuffledPokemon([...pokemonList])
   }, [shuffleFlg])
 
-  // ポケモンが変わったら選択肢も更新する
   useEffect(() => {
     doShuffle(optionSet)
     setOption([...optionSet])
-  }, [questionNo])
+  }, [correctAnswer])
 
   return (
     <Layout>

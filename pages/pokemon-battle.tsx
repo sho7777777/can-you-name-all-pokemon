@@ -1,6 +1,6 @@
 // Component
 import Image from 'next/image';
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GameCompletedModal } from '../components/GameCompletedModal';
 import { GameOverModal } from '../components/GameOverModal';
 import { RegisterRankingModal } from '../components/RegisterRankingModal';
@@ -15,7 +15,6 @@ import { loadPokemon } from '../lib/load-pokemon';
 // Type
 import { Pokemon } from '../types/pokemon';
 
-
 export default function PokemonBattle(pokemon: { pokemonList: Pokemon[]; }) {
 
   const [questionNo, setQuestionNo] = useState<number>(0);
@@ -24,8 +23,6 @@ export default function PokemonBattle(pokemon: { pokemonList: Pokemon[]; }) {
   const [showRankingModal, setShowRankingModal] = useState<boolean>(false);
   const [shuffleFlg, setShuffleFlag] = useState<boolean>(true);
 
-  // const allPokemonList = pokemon.pokemonList.concat();
-
   const { doShuffle } = useShuffle();
 
   // 配列は参照渡しのためポケモン図鑑の並びも変わるので、concatで回避
@@ -33,8 +30,7 @@ export default function PokemonBattle(pokemon: { pokemonList: Pokemon[]; }) {
   const pokemonList: Pokemon[] = pokemon.pokemonList.concat().slice(0, 5);
   // const pokemonList: Pokemon[] = pokemon.pokemonList.concat();
 
-  // １問毎にポケモンがシャッフルされるのを防ぐため、メモ化
-  const shuffledPokemon: Pokemon[] = useMemo(() => doShuffle(pokemonList), [shuffleFlg]);
+  const [shuffledPokemon, setShuffledPokemon] = useState<Pokemon[]>(pokemonList)
 
   // 選択肢の作成
   const correctAnswer = shuffledPokemon[questionNo].nameEn;
@@ -44,11 +40,9 @@ export default function PokemonBattle(pokemon: { pokemonList: Pokemon[]; }) {
   const wrongAnswerB = wrongAnswers[1].nameEn;
   const wrongAnswerC = wrongAnswers[2].nameEn;
 
-  const option: string[] = [correctAnswer, wrongAnswerA, wrongAnswerB, wrongAnswerC];
+  const optionSet: string[] = [correctAnswer, wrongAnswerA, wrongAnswerB, wrongAnswerC];
 
-  // 選択肢を混ぜる
-  const shuffledOption = doShuffle(option)
-  const [optionA, optionB, optionC, optionD] = [...shuffledOption];
+  const [option, setOption] = useState<string[]>([])
 
   // 画像取得に使用
   const currentPokemonNo = shuffledPokemon[questionNo].No;
@@ -63,6 +57,18 @@ export default function PokemonBattle(pokemon: { pokemonList: Pokemon[]; }) {
       setQuestionNo(questionNo)
     ) : setQuestionNo(questionNo + 1)
   }
+
+  // 再チャレンジ（フラグが更新される）時だけ配列を更新）
+  useEffect(() => {
+    doShuffle(pokemonList)
+    setShuffledPokemon([...pokemonList])
+  }, [shuffleFlg])
+
+  // ポケモンが変わったら選択肢も更新する
+  useEffect(() => {
+    doShuffle(optionSet)
+    setOption([...optionSet])
+  }, [questionNo])
 
   return (
     <Layout>
@@ -85,10 +91,10 @@ export default function PokemonBattle(pokemon: { pokemonList: Pokemon[]; }) {
           <h2 className="text-center my-2">{shuffledPokemon[questionNo].nameJa}</h2>
 
           <div className="flex flex-col justify-between items-center w-3/4 max-w-lg mx-auto gap-y-2 md:flex-row">
-            <button type="button" value={optionA} onClick={checkAnswer} className="option-btn">{optionA}</button>
-            <button type="button" value={optionB} onClick={checkAnswer} className="option-btn">{optionB}</button>
-            <button type="button" value={optionC} onClick={checkAnswer} className="option-btn">{optionC}</button>
-            <button type="button" value={optionD} onClick={checkAnswer} className="option-btn">{optionD}</button>
+            <button type="button" value={option[0]} onClick={checkAnswer} className="option-btn">{option[0]}</button>
+            <button type="button" value={option[1]} onClick={checkAnswer} className="option-btn">{option[1]}</button>
+            <button type="button" value={option[2]} onClick={checkAnswer} className="option-btn">{option[2]}</button>
+            <button type="button" value={option[3]} onClick={checkAnswer} className="option-btn">{option[3]}</button>
           </div>
         </div>
 

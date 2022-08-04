@@ -4,7 +4,7 @@ import React, { useState, useMemo } from 'react';
 import { GameCompletedModal } from '../components/GameCompletedModal';
 import { GameOverModal } from '../components/GameOverModal';
 import { RegisterRankingModal } from '../components/RegisterRankingModal';
-import Layout from '../components/Layout';
+import { Layout } from '../components/Layout';
 
 // Hook
 import { useShuffle } from '../hooks/useShuffle';

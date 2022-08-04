@@ -22,7 +22,7 @@ export const Top = () => {
   }
 
   return (
-    <div className="bg-white container mx-auto">
+    <div className="bg-white container mx-auto h-screen pt-20">
 
       {/* ---Title--- */}
       <h1 className="text-2xl md:text-3xl m-4 text-center ">
@@ -59,10 +59,12 @@ export const Top = () => {
           <Link href="/pokedex"><p className=''>ポケモンずかん</p></Link>
         </div>
         <div className="flex group">
+          <span className='absolute mr-2 text-white group-hover:text-black animate-ping opacity-75'>▶︎</span>
           <span className='mr-2 text-white group-hover:text-black'>▶︎</span>
           <Link href="/pokemon-battle"><p className=''>言えるかな？</p></Link>
         </div>
         <div className="flex group">
+          <span className='absolute mr-2 text-white group-hover:text-black animate-ping opacity-75'>▶︎</span>
           <span className='mr-2 text-white group-hover:text-black'>▶︎</span>
           <Link href="/ranking"><p>ランキング</p></Link>
         </div>

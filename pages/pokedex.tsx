@@ -1,6 +1,6 @@
 // Component
 import Image from 'next/image';
-import Layout from '../components/Layout';
+import { Layout } from '../components/Layout';
 
 // Constant
 import { totalPokemon, url, urlSpiecies } from '../const/constants';

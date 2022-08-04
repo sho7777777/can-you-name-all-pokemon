@@ -1,5 +1,5 @@
 // Component
-import Layout from '../components/Layout';
+import { Layout } from '../components/Layout';
 
 // Hook
 import { useEffect } from 'react';
@@ -17,7 +17,7 @@ export default function Ranking() {
   return (
     <div>
       <Layout>
-        <div className="container mx-auto pt-3 flex flex-col">
+        <div className="container mx-auto pt-3 flex flex-col h-screen">
           <h1 className=" text-center text-3xl text-gray-600 mb-4">ランキング</h1>
           {/* ---Ranking--- */}
           <div className="overflow-x-auto">

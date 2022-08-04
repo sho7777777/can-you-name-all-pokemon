@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  .sort-btn {
-    @apply rounded drop-shadow-md bg-cyan-300 hover:bg-cyan-200;
+  .btn-sort {
+    @apply rounded drop-shadow-md hover:text-emerald-400;
   }
   .option-btn {
     @apply rounded  bg-green-300 p-1 drop-shadow-md hover:bg-green-200 hover:text-rose-400 w-28;

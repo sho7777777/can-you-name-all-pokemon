@@ -34,10 +34,17 @@ export const useFirebase = () => {
   }
 
   const addRanking = async (name: string, score: number) => {
-    await addDoc(userRef, {
+
+    try{
+      if(name.length > 0 && name.length < 11)
+      await addDoc(userRef, {
         name:name,
         score:score,
     })
+    }catch(e){
+      console.log(e);
+    }
+    
   }
   
   return { getRanking, addRanking, user }

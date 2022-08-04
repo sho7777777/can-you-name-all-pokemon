@@ -31,7 +31,7 @@ export default function Ranking() {
               </thead>
               <tbody className='border-b'>
                 {user.map((data, index) => (
-                  <tr key={index} className="border-b text-gray-600 py-4">
+                  <tr key={index} className="border-b text-gray-600 py-4 text-sm md:text-base">
                     <td>{index + 1}</td>
                     <td>{data.name}</td>
                     <td>{data.score}</td>

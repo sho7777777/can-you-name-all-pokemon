@@ -47,22 +47,22 @@ export default function Pokedex(pokemon: { pokemonList: Pokemon[]; }) {
 
         {/* ---Sort Area---  */}
         <div className="container grid grid-cols-4 mx-auto justify-between md:grid-cols-8">
-          <button type="button" value="151" className='sort-btn ' onClick={filterPokemon}>すべて</button>
-          <button type="button" value="0" className='sort-btn' onClick={filterPokemon}>1~10</button>
-          <button type="button" value="10" className='sort-btn' onClick={filterPokemon}>11~20</button>
-          <button type="button" value="20" className='sort-btn' onClick={filterPokemon}>21~30</button>
-          <button type="button" value="30" className='sort-btn' onClick={filterPokemon}>31~40</button>
-          <button type="button" value="40" className='sort-btn' onClick={filterPokemon}>41~50</button>
-          <button type="button" value="50" className='sort-btn' onClick={filterPokemon}>51~60</button>
-          <button type="button" value="60" className='sort-btn' onClick={filterPokemon}>61~70</button>
-          <button type="button" value="70" className='sort-btn' onClick={filterPokemon}>71~80</button>
-          <button type="button" value="80" className='sort-btn' onClick={filterPokemon}>81~90</button>
-          <button type="button" value="90" className='sort-btn' onClick={filterPokemon}>91~100</button>
-          <button type="button" value="100" className='sort-btn' onClick={filterPokemon}>101~110</button>
-          <button type="button" value="110" className='sort-btn' onClick={filterPokemon}>111~120</button>
-          <button type="button" value="120" className='sort-btn' onClick={filterPokemon}>121~130</button>
-          <button type="button" value="130" className='sort-btn' onClick={filterPokemon}>131~140</button>
-          <button type="button" value="140" className='sort-btn' onClick={filterPokemon}>141~151</button>
+          <button type="button" value="151" className='btn-sort ' onClick={filterPokemon}>すべて</button>
+          <button type="button" value="0" className='btn-sort' onClick={filterPokemon}>1~10</button>
+          <button type="button" value="10" className='btn-sort' onClick={filterPokemon}>11~20</button>
+          <button type="button" value="20" className='btn-sort' onClick={filterPokemon}>21~30</button>
+          <button type="button" value="30" className='btn-sort' onClick={filterPokemon}>31~40</button>
+          <button type="button" value="40" className='btn-sort' onClick={filterPokemon}>41~50</button>
+          <button type="button" value="50" className='btn-sort' onClick={filterPokemon}>51~60</button>
+          <button type="button" value="60" className='btn-sort' onClick={filterPokemon}>61~70</button>
+          <button type="button" value="70" className='btn-sort' onClick={filterPokemon}>71~80</button>
+          <button type="button" value="80" className='btn-sort' onClick={filterPokemon}>81~90</button>
+          <button type="button" value="90" className='btn-sort' onClick={filterPokemon}>91~100</button>
+          <button type="button" value="100" className='btn-sort' onClick={filterPokemon}>101~110</button>
+          <button type="button" value="110" className='btn-sort' onClick={filterPokemon}>111~120</button>
+          <button type="button" value="120" className='btn-sort' onClick={filterPokemon}>121~130</button>
+          <button type="button" value="130" className='btn-sort' onClick={filterPokemon}>131~140</button>
+          <button type="button" value="140" className='btn-sort' onClick={filterPokemon}>141~151</button>
         </div>
 
         {/* ---Pokedex--- */}

@@ -35,6 +35,8 @@ export const RegisterRankingModal: FC<Props> = (props) => {
   const registerRanking = () => {
     if (userName === undefined) {
       return
+    } else if (userName.length > 10) {
+      return
     } else {
       addRanking(userName, questionNo + 1);
       setIsRegisterRankingCompleted(true);
@@ -85,8 +87,7 @@ export const RegisterRankingModal: FC<Props> = (props) => {
                   {isUserNameUndefined && <p className="text-red-600">なまえを入力してね</p>}
                   {!isUserNameLengthValid && <p className="text-red-600">なまえは10文字以内にしてね</p>}
                 </div>
-                {/* <button type="button" className="mt-2 ml-auto btn-register" onClick={registerRanking} disabled={isButtonDisabled}>とうろく</button> */}
-                <Button onClick={registerRanking} isButtonDisabled={isButtonDisabled} buttonStyle={buttonStyle} />
+                <Button onClick={registerRanking} isButtonDisabled={isButtonDisabled} buttonStyle={buttonStyle} text="とうろく" />
               </div>
             </div>
           </div>

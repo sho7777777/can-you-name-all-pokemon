@@ -19,7 +19,7 @@ export const RegisterRankingModal: FC<Props> = (props) => {
   const [isRegisterRankingCompleted, setIsRegisterRankingCompleted] = useState<boolean>(false)
 
   // ユーザー名バリデーション
-  const [userName, setUserName] = useState<string>();
+  const [userName, setUserName] = useState<string>('');
   const [isUserNameUndefined, setIsUserNameUndefined] = useState<boolean>(true);
   const [isUserNameLengthValid, setIsUserNameLengthValid] = useState<boolean>(true);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -73,6 +73,13 @@ export const RegisterRankingModal: FC<Props> = (props) => {
 
   }
 
+  const onEnter = (e: any) => {
+    const userName = e.target.value;
+    if (e.key === "Enter" && userName.length > 0 && userName.length < 11) {
+      registerRanking()
+    }
+  }
+
   return (
     <div className="absolute bg-black inset-0 bg-opacity-60 flex justify-center items-center z-10">
       {!isRegisterRankingCompleted ? (
@@ -83,7 +90,7 @@ export const RegisterRankingModal: FC<Props> = (props) => {
                 <h3 className="mb-4 text-xl font-medium text-gray-600">ランキングとうろく</h3>
                 <div>
                   <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-600">なまえ</label>
-                  <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="なまえを入力してね" required value={userName} onChange={handleChange} />
+                  <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="なまえを入力してね" required value={userName} onChange={handleChange} onKeyPress={onEnter} />
                   {isUserNameUndefined && <p className="text-red-600">なまえを入力してね</p>}
                   {!isUserNameLengthValid && <p className="text-red-600">なまえは10文字以内にしてね</p>}
                 </div>

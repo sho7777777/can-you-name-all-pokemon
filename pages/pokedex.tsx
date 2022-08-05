@@ -1,12 +1,13 @@
 // Component
 import Image from 'next/image';
 import { Layout } from '../components/Layout';
+import { WarningPopUp } from '../components/WarningPopUp';
 
 // Constant
 import { totalPokemon, sortButtonProperty } from '../const/constants';
 
 // Hook
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // lib
 import { loadPokemon } from '../lib/load-pokemon';
@@ -16,10 +17,16 @@ import { Pokemon } from '../types/pokemon';
 import { Button } from '../components/Button';
 
 
+
 export default function Pokedex(pokemon: { pokemonList: Pokemon[]; }) {
 
   const [pokemonList, setPokemonList] = useState(pokemon.pokemonList)
   const allPokemon = pokemon.pokemonList;
+  const [showWarningPopUp, setShowWarningPopUp] = useState(true);
+
+  useEffect(() => {
+    sessionStorage.getItem('showPopUp') && setShowWarningPopUp(false)
+  })
 
   // 10匹ずつフィルタリング
   const filterPokemon = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -55,7 +62,8 @@ export default function Pokedex(pokemon: { pokemonList: Pokemon[]; }) {
   return (
     <div>
       <Layout>
-        <h1 className="text-3xl text-gray-600 text-center  my-3">ポケモンずかん</h1>
+        {showWarningPopUp && <WarningPopUp setShowWarningPopUp={setShowWarningPopUp} />}
+        <h1 className="text-3xl text-gray-600 text-center mb-3">ポケモンずかん</h1>
 
         {/* ---Sort Area---  */}
         <div className="container grid grid-cols-4 mx-auto text-center md:grid-cols-8">

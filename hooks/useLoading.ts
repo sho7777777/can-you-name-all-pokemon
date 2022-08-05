@@ -9,7 +9,6 @@ export const useLoading = () => {
   useEffect(() => {
     const handleStart = (url: any) => url !== router.asPath && setLoading(true);
     const handleComplete = (url: any) => url === router.asPath && setLoading(false);
-    console.log("aaa")
 
     router.events.on('routeChangeStart', handleStart);
     router.events.on('routeChangeComplete', handleComplete);

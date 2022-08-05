@@ -1,6 +1,9 @@
-import { collection, doc, getDocs, query, orderBy, limit, addDoc } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, limit, addDoc } from 'firebase/firestore';
 import { db } from "../fire";
+
+// Hook
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 type User = {
   name: string;
@@ -11,9 +14,9 @@ export const useFirebase = () => {
 
   const [user, setUser] = useState<User[]>([]);
   const userRef = collection(db, "score")
+  const router = useRouter();
 
   const getRanking = async () => {
-    
     try{
       const q = query(userRef, orderBy("score", "desc"), limit(20));
       const querySnapshot = await getDocs(q)
@@ -28,7 +31,8 @@ export const useFirebase = () => {
       })
       setUser(users)
     }catch(e){
-      alert("Sorry")
+      // alert("Sorry")
+      router.push('/sorry');
     }
     
   }

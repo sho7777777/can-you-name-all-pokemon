@@ -17,7 +17,7 @@ export const Layout: FC<Props> = ({ children }) => {
         <link rel="icon" href="/pikachu.ico" />
       </Head>
 
-      <div className='sticky z-50 top-0 bg-green-200'>
+      <div className='sticky z-10 top-0 bg-green-200'>
         <Header />
       </div>
 

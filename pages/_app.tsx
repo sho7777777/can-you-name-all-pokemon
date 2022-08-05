@@ -1,8 +1,21 @@
 import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import { AppProps } from 'next/app'
+import { Loading } from '../components/Loading';
+import { useLoading } from '../hooks/useLoading';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+
+  const { loading } = useLoading();
+
+  return (
+    <>
+      {loading && <Loading />}
+      <Component {...pageProps} />
+    </>
+  )
 }
+
+
+
 
 export default MyApp

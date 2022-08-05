@@ -41,6 +41,17 @@ export default function Pokedex(pokemon: { pokemonList: Pokemon[]; }) {
     }
   }
 
+  const getPokeNo = (pokeNo: string) => {
+    const url = `/prono/${pokeNo}.mp3`;
+    return url;
+  }
+
+  const onClickPlay = (pokeNo: string) => {
+    const audioUrl = getPokeNo(pokeNo);
+    const audio = new Audio(audioUrl)
+    audio.play();
+  }
+
   return (
     <div>
       <Layout>
@@ -70,11 +81,12 @@ export default function Pokedex(pokemon: { pokemonList: Pokemon[]; }) {
                       </div>
                     </div>
                     <div className="absolute w-60 h-full rounded mb-2 my-rotate-y-180 backface-hidden">
-                      <div className="h-3/5 flex bg-gradient-to-r from-pink-50 to-pink-200 items-center justify-center"
-                      >
-                        <Image src={`/pokedex/${pokemon.No}.png`} width={100} height={100} alt="pokemon" className="m-auto"
-                        />
+                      <div className="h-3/5 flex bg-gradient-to-r from-pink-50 to-pink-200 items-center justify-center" >
+                        <Image src={`/pokedex/${pokemon.No}.png`} width={100} height={100} alt="pokemon" className="m-auto hover:cursor-pointer"
+                          onClick={() => onClickPlay(pokemon.No)} />
                       </div>
+
+
                       <div className="p-2 mb-2 h-2/5 bg-gradient-to-r from-green-50 to-green-200 ">
                         <p className="text-center">{pokemon.nameEn}</p>
                         <p className="text-center text-sm mt-1">{pokemon.origin}</p>

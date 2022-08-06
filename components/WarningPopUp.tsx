@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { FC } from "react";
 
 
@@ -26,7 +25,7 @@ export const WarningPopUp: FC<Props> = (props) => {
           <p className="text-gray-600 text-base ml-3">音量に注意してね。</p>
         </div>
         <div className="text-center">
-          <Image src="/warning/warning.png" alt="warning" width={250} height={250} />
+          <img src="/warning/warning.png" alt="warning" className="w-60 h-60 mx-auto" />
         </div>
         <div className="text-center mt-1">
           <button className="btn-basic" onClick={closeWarning}>わかりました</button>

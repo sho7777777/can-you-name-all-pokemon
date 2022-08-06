@@ -1,5 +1,4 @@
 // Component
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 // Constant
@@ -49,7 +48,7 @@ export const Top = () => {
             <SwiperSlide key={index}>
               <div>
                 <div className="mx-auto mb-4 w-24 h-24 md:h-28 md:w-28">
-                  <Image src={`/pokedex/${pokemon}.png`} alt="pokemon" width="100" height="100" loading="eager" layout="responsive" />
+                  <img src={`/pokedex/${pokemon}.png`} alt="pokemon" className='w-24 h-24 md:w-28 md:h-28' />
                 </div>
               </div>
             </SwiperSlide>

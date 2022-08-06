@@ -1,5 +1,4 @@
 // Component
-import Image from 'next/image';
 import { Layout } from '../components/Layout';
 import { WarningPopUp } from '../components/WarningPopUp';
 
@@ -81,7 +80,7 @@ export default function Pokedex(pokemon: { pokemonList: Pokemon[]; }) {
                   <div className="absolute w-full h-full preserve-3d group-hover:my-rotate-y-180 duration-700">
                     <div className="absolute w-full h-full rounded mb-2 backface-hidden">
                       <div className="h-3/5 flex bg-gradient-to-r from-pink-50 to-pink-200 items-center justify-center">
-                        <Image src={`/pokedex/${pokemon.No}.png`} width={100} height={100} alt="pokemon" className="m-auto" />
+                        <img src={`/pokedex/${pokemon.No}.png`} alt="" className="m-auto w-28 h-28" />
                       </div>
                       <div className="py-6 mb-2 h-2/5 bg-gradient-to-r from-green-50 to-green-200">
                         <p className="text-center my-auto ">No. {pokemon.No}</p>
@@ -90,8 +89,7 @@ export default function Pokedex(pokemon: { pokemonList: Pokemon[]; }) {
                     </div>
                     <div className="absolute w-60 h-full rounded mb-2 my-rotate-y-180 backface-hidden">
                       <div className="h-3/5 flex bg-gradient-to-r from-pink-50 to-pink-200 items-center justify-center" >
-                        <Image src={`/pokedex/${pokemon.No}.png`} width={100} height={100} alt="pokemon" className="m-auto hover:cursor-pointer"
-                          onClick={() => onClickPlay(pokemon.No)} />
+                        <img src={`/pokedex/${pokemon.No}.png`} alt="" className="m-auto hover:cursor-pointer w-28 h-28" onClick={() => onClickPlay(pokemon.No)} />
                       </div>
 
 

@@ -1,5 +1,4 @@
 // Component
-import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { GameCompletedModal } from '../components/GameCompletedModal';
 import { GameOverModal } from '../components/GameOverModal';
@@ -84,7 +83,7 @@ export default function PokemonBattle(pokemon: { pokemonList: Pokemon[]; }) {
           <p className="text-2xl text-center mb-2 text-gray-600">現在 {questionNo + 1} 匹め</p>
 
           <div className="mx-auto w-24 h-24 md:h-28 md:w-28">
-            <Image src={`/pokedex/${currentPokemonNo}.png`} width={100} height={100} alt="pokemon image" layout='responsive' />
+            <img src={`/pokedex/${currentPokemonNo}.png`} alt="" className='w-24 h-24 md:w-28 md:h-28' />
           </div>
 
           <h2 className="text-center my-2">{shuffledPokemon[questionNo].nameJa}</h2>

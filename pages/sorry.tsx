@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Header } from "../components/Header";
 
 export default function NotFound() {
@@ -9,7 +8,7 @@ export default function NotFound() {
       </div>
       <div className="flex justify-center mt-20">
         <div>
-          <Image src="/sorry.png" alt="sorry page" width={300} height={300} />
+          <img src="/sorry.png" alt="sorry" className="w-1/3 h-1/3" />
         </div>
       </div>
       <p className="text-center mt-4 text-2xl text-gray-600">また明日きてね。</p>

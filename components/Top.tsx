@@ -1,5 +1,4 @@
 // Component
-import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
@@ -10,11 +9,14 @@ import { totalPokemon } from '../const/constants';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper';
 import 'swiper/css'
+import { Credit } from './Credit';
+import { Menu } from './Menu';
 
 
 export const Top = () => {
 
   const [pokemonImage, setPokemonImage] = useState<string[]>([]);
+  // Always Starts with Pikachu
   const imageIndex: string[] = ['025']
   const indexForSwiper = 50;
   for (var i = 1; i < indexForSwiper; i++) {
@@ -22,6 +24,7 @@ export const Top = () => {
     imageIndex.push(pokeIndex)
   }
 
+  // Prevent Hydrate Warning
   useEffect(() => {
     setPokemonImage(imageIndex);
   }, [])
@@ -48,38 +51,15 @@ export const Top = () => {
                 <div className="mx-auto mb-4 w-24 h-24 md:h-28 md:w-28">
                   <Image src={`/pokedex/${pokemon}.png`} alt="pokemon" width="100" height="100" loading="eager" layout="responsive" />
                 </div>
-
               </div>
-
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
       {/* ---Menu Select--- */}
-      <div className="flex flex-col justify-center h-32 gap-4 hover:cursor-pointer w-40 mx-auto">
-        <div className='flex group'>
-          <span className='absolute mr-2 text-transparent group-hover:text-black animate-ping opacity-75'>▶︎</span>
-          <span className='relative mr-2 text-transparent group-hover:text-black'>▶︎</span>
-          <Link href="/pokedex"><p className=''>ポケモンずかん</p></Link>
-        </div>
-        <div className="flex group">
-          <span className='absolute mr-2 text-transparent group-hover:text-black animate-ping opacity-75'>▶︎</span>
-          <span className='mr-2 text-transparent group-hover:text-black'>▶︎</span>
-          <Link href="/pokemon-battle"><p className=''>言えるかな？</p></Link>
-        </div>
-        <div className="flex group">
-          <span className='absolute mr-2 text-transparent group-hover:text-black animate-ping opacity-75'>▶︎</span>
-          <span className='mr-2 text-transparent group-hover:text-black'>▶︎</span>
-          <Link href="/ranking"><p>ランキング</p></Link>
-        </div>
-      </div>
-
-      <div className="flex flex-col justify-center items-center mt-20 h-32 text-xs ">
-        <p className="text-gray-500">出典</p>
-        <p className="text-gray-500">ポケモン名（英語）の由来：<a href="https://pokemon-english-dictionary.com/" rel="noopener noreferrer" target="_blank" className='text-blue-500'>ポケモン英語語源辞典</a></p>
-        <p className="text-gray-500">英語音源：<a href="https://ondoku3.com/ja/" rel="noopener noreferrer" target="_blank" className='text-blue-500'>&copy;音読さん</a></p>
-      </div>
+      <Menu />
+      <Credit />
 
     </div>
   )

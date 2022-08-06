@@ -21,5 +21,8 @@
   .btn-disabled {
     @apply text-white bg-gray-500 rounded text-sm px-2 py-2 text-center;
   }
+  .btn-header {
+    @apply hover:text-gray-400 hover:cursor-pointer;
+  }
 
 }

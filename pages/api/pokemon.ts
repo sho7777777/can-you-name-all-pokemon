@@ -82,7 +82,7 @@ export default function handler(
 { "No": "067" , "NameJa": "ゴーリキー" ,"Origin": "macho(男らしい、男らしい人) + choke(窒息させる、詰まらせる)" },
 { "No": "068" , "NameJa": "カイリキー" ,"Origin": "macho(男らしい、男らしい人) + champion (闘士、優勝者)" },
 { "No": "069" , "NameJa": "マダツボミ" ,"Origin": "bell(鈴、ベル) + sprout(芽、芽を出す、若者)" },
-{ "No": "070" , "NameJa": "ウツドン" ,"Origin": "bell(鈴、ベル) + sprout(芽、芽を出す、若者)" },
+{ "No": "070" , "NameJa": "ウツドン" ,"Origin": "weeping(branch 下垂枝) + bell(鈴、ベル)" },
 { "No": "071" , "NameJa": "ウツボット" ,"Origin": "victory(勝利) + tree(木) + bell(鈴、ベル)" },
 { "No": "072" , "NameJa": "メノクラゲ" ,"Origin": "tentacle(触手、触角) + cool(かっこいい、いかす、冷たい)" },
 { "No": "073" , "NameJa": "ドククラゲ" ,"Origin": "tentacle(触手、触角) + cruel(残酷な、無慈悲な、悲惨な)" },

@@ -26,22 +26,28 @@ export default function PokemonBattle(pokemon: { pokemonList: Pokemon[]; }) {
 
   // 配列は参照渡しのためポケモン図鑑の並びも変わるので、concatで回避
   // 動作確認後はsliceメソッドは消す
-  const pokemonList: Pokemon[] = pokemon.pokemonList.concat().slice(0, 6);
-  // const pokemonList: Pokemon[] = pokemon.pokemonList.concat();
+  // const pokemonList: Pokemon[] = pokemon.pokemonList.concat().slice(0, 6);
+  const pokemonList: Pokemon[] = pokemon.pokemonList.concat();
 
   const [shuffledPokemon, setShuffledPokemon] = useState<Pokemon[]>(pokemonList)
 
   // 選択肢の作成
   const correctAnswer = shuffledPokemon[questionNo].nameEn;
   const wrongAnswers = shuffledPokemon.filter(n => n.nameEn != correctAnswer);
+  // console.log("wrongAnswers", wrongAnswers)
 
-  const wrongAnswerA = wrongAnswers[0].nameEn;
-  const wrongAnswerB = wrongAnswers[1].nameEn;
-  const wrongAnswerC = wrongAnswers[2].nameEn;
+  // const wrongAnswerA = wrongAnswers[0].nameEn;
+  // const wrongAnswerB = wrongAnswers[1].nameEn;
+  // const wrongAnswerC = wrongAnswers[2].nameEn;
+
+  const [wrongAnswerA, setWrongAnswerA] = useState<string>('');
+  const [wrongAnswerB, setWrongAnswerB] = useState<string>('');
+  const [wrongAnswerC, setWrongAnswerC] = useState<string>('');
 
   const optionSet: string[] = [correctAnswer, wrongAnswerA, wrongAnswerB, wrongAnswerC];
 
   const [option, setOption] = useState<string[]>([])
+  doShuffle(option)
 
   // 画像取得に使用
   const currentPokemonNo = shuffledPokemon[questionNo].No;
@@ -64,7 +70,10 @@ export default function PokemonBattle(pokemon: { pokemonList: Pokemon[]; }) {
   }, [shuffleFlg])
 
   useEffect(() => {
-    doShuffle(optionSet)
+    doShuffle(wrongAnswers);
+    setWrongAnswerA(wrongAnswers[0].nameEn);
+    setWrongAnswerB(wrongAnswers[1].nameEn);
+    setWrongAnswerC(wrongAnswers[2].nameEn);
     setOption([...optionSet])
   }, [correctAnswer])
 
@@ -80,7 +89,7 @@ export default function PokemonBattle(pokemon: { pokemonList: Pokemon[]; }) {
 
         <div className="h-screen pt-20 md:pt-32">
           <p className="text-3xl text-center my-4 text-gray-600">言えるかな？</p>
-          <p className="text-2xl text-center mb-2 text-gray-600">現在 {questionNo + 1} 匹め</p>
+          <p className="text-2xl text-center mb-2 text-gray-600">現在 {questionNo + 1} / 151 ひき</p>
 
           <div className="mx-auto w-24 h-24 md:h-28 md:w-28">
             <img src={`/pokedex/${currentPokemonNo}.png`} alt="" className='w-24 h-24 md:w-28 md:h-28' />

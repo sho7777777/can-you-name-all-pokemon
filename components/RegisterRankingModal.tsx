@@ -17,12 +17,14 @@ export const RegisterRankingModal: FC<Props> = (props) => {
 
   const { questionNo, setQuestionNo, setShowRankingModal, setIsGameOver, shuffleFlg, setShuffleFlg } = props
   const [isRegisterRankingCompleted, setIsRegisterRankingCompleted] = useState<boolean>(false)
+  const maxLength = 20
 
   // ユーザー名バリデーション
   const [userName, setUserName] = useState<string>('');
   const [isUserNameUndefined, setIsUserNameUndefined] = useState<boolean>(true);
   const [isUserNameLengthValid, setIsUserNameLengthValid] = useState<boolean>(true);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [isInvalidCharacter, setIsInvalidCharacter] = useState(false);
   // ボタン
   const buttonStyleActive = "mt-2 ml-auto btn-register";
   const buttonStyleDisabled = "mt-2 ml-auto btn-disabled";
@@ -35,7 +37,9 @@ export const RegisterRankingModal: FC<Props> = (props) => {
   const registerRanking = () => {
     if (userName === undefined) {
       return
-    } else if (userName.length > 10) {
+    } else if (userName.length > maxLength) {
+      return
+    } else if (userName.includes("<") || userName.includes(">")) {
       return
     } else {
       addRanking(userName, questionNo + 1);
@@ -58,18 +62,28 @@ export const RegisterRankingModal: FC<Props> = (props) => {
       setIsUserNameLengthValid(true);
       setIsButtonDisabled(true);
       setButtonStyle(buttonStyleDisabled);
-    } else if (userName.length > 10) {
+      setIsInvalidCharacter(false)
+      setUserName(userName)
+    } else if (userName.length > maxLength) {
       setIsUserNameUndefined(false);
       setIsUserNameLengthValid(false);
       setIsButtonDisabled(true);
       setButtonStyle(buttonStyleDisabled);
+      setIsInvalidCharacter(false)
     } else {
-      setIsUserNameUndefined(false);
-      setIsUserNameLengthValid(true);
-      setIsButtonDisabled(false);
-      setButtonStyle(buttonStyleActive);
+      if (userName.includes("<") || userName.includes(">")) {
+        setIsInvalidCharacter(true)
+        setIsButtonDisabled(true);
+        setButtonStyle(buttonStyleDisabled);
+      } else {
+        setIsUserNameUndefined(false);
+        setIsUserNameLengthValid(true);
+        setIsButtonDisabled(false);
+        setButtonStyle(buttonStyleActive);
+        setIsInvalidCharacter(false)
+        setUserName(userName)
+      }
     }
-    setUserName(userName)
 
   }
 
@@ -92,7 +106,8 @@ export const RegisterRankingModal: FC<Props> = (props) => {
                   <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-600">なまえ</label>
                   <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="なまえを入力してね" required value={userName} onChange={handleChange} onKeyPress={onEnter} />
                   {isUserNameUndefined && <p className="text-red-600">なまえを入力してね</p>}
-                  {!isUserNameLengthValid && <p className="text-red-600">なまえは10文字以内にしてね</p>}
+                  {!isUserNameLengthValid && <p className="text-red-600">なまえは{maxLength}文字以内にしてね</p>}
+                  {isInvalidCharacter && <p className="text-red-600">その文字は使わないでね</p>}
                 </div>
                 <Button onClick={registerRanking} isButtonDisabled={isButtonDisabled} buttonStyle={buttonStyle} text="とうろく" />
               </div>

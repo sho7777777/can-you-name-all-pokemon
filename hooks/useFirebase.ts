@@ -1,5 +1,5 @@
 import { collection, getDocs, query, orderBy, limit, addDoc } from 'firebase/firestore';
-import { db } from "../fire";
+import { db } from "../firebase/init";
 
 // Hook
 import { useState } from 'react';

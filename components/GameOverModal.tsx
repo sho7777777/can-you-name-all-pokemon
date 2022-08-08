@@ -37,7 +37,7 @@ export const GameOverModal: FC<Props> = (props) => {
 
   return (
     <div className="absolute bg-black inset-0 bg-opacity-60 flex justify-center z-10">
-      <div className="relative bg-gray-200 rounded pt-4 w-96 h-2/5 mt-40">
+      <div className="relative bg-gray-200 rounded pt-4 w-96 h-1/2 mt-40">
         <div className="flex justify-between items-center opacity-100">
           <h4 className="text-gray-600 text-2xl font-bold mx-auto mt-4">Game Over...</h4>
         </div>

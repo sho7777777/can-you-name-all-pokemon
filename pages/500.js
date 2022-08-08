@@ -1,6 +1,6 @@
 import { Header } from "../components/Header";
 
-export default function NotFound() {
+export default function ServerError() {
   return (
     <div>
       <div className='sticky z-10 top-0 bg-green-200'>

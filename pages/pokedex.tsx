@@ -111,10 +111,8 @@ export default function Pokedex(pokemon: { pokemonList: Pokemon[]; }) {
 
 export async function getStaticProps() {
 
-  const pokemonList: Pokemon[] = [];
-
   try {
-    const pokemonList = await loadPokemon();
+    const pokemonList: Pokemon[] = await loadPokemon()!;
     return {
       props: {
         pokemonList

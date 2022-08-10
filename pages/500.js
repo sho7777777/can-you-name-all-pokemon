@@ -8,7 +8,7 @@ export default function ServerError() {
       </div>
       <div className="flex justify-center mt-20 h-screen">
         <div className="w-1/3 h-1/3">
-          <img src="/500.png" alt="404 page" />
+          <img src="/500.png" alt="500 page" />
         </div>
 
       </div>

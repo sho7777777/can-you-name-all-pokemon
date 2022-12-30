@@ -14,7 +14,7 @@ import { loadPokemon } from '../lib/load-pokemon';
 // Type
 import { Pokemon } from '../types/pokemon';
 
-export default function PokemonBattle(pokemon: { pokemonList: Pokemon[]; }) {
+export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
 
   const [questionNo, setQuestionNo] = useState<number>(0);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
@@ -27,18 +27,14 @@ export default function PokemonBattle(pokemon: { pokemonList: Pokemon[]; }) {
   // 配列は参照渡しのためポケモン図鑑の並びも変わるので、concatで回避
   // 動作確認後はsliceメソッドは消す
   // const pokemonList: Pokemon[] = pokemon.pokemonList.concat().slice(0, 6);
-  const pokemonList: Pokemon[] = pokemon.pokemonList.concat();
+  const pokemonList: Pokemon[] = props.pokeList.concat();
+
 
   const [shuffledPokemon, setShuffledPokemon] = useState<Pokemon[]>(pokemonList)
 
   // 選択肢の作成
   const correctAnswer = shuffledPokemon[questionNo].nameEn;
   const wrongAnswers = shuffledPokemon.filter(n => n.nameEn != correctAnswer);
-  // console.log("wrongAnswers", wrongAnswers)
-
-  // const wrongAnswerA = wrongAnswers[0].nameEn;
-  // const wrongAnswerB = wrongAnswers[1].nameEn;
-  // const wrongAnswerC = wrongAnswers[2].nameEn;
 
   const [wrongAnswerA, setWrongAnswerA] = useState<string>('');
   const [wrongAnswerB, setWrongAnswerB] = useState<string>('');
@@ -111,12 +107,11 @@ export default function PokemonBattle(pokemon: { pokemonList: Pokemon[]; }) {
 }
 
 export async function getStaticProps() {
-
   try {
-    const pokemonList: Pokemon[] = await loadPokemon();
+    const pokeList: Pokemon[] = await loadPokemon();
     return {
       props: {
-        pokemonList
+        pokeList
       }
     }
   } catch (err) {

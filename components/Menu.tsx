@@ -13,7 +13,7 @@ export const Menu = () => {
       <div className="flex group">
         <span className='absolute mr-2 text-transparent group-hover:text-black animate-ping opacity-75'>▶︎</span>
         <span className='mr-2 text-transparent group-hover:text-black'>▶︎</span>
-        <Link href="/pokemon-battle"><p className=''>言えるかな？</p></Link>
+        <Link href="/pokemonBattle"><p className=''>言えるかな？</p></Link>
       </div>
       <div className="flex group">
         <span className='absolute mr-2 text-transparent group-hover:text-black animate-ping opacity-75'>▶︎</span>

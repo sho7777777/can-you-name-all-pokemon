@@ -1,4 +1,4 @@
-
+// Components
 import { Layout } from '../components/Layout';
 import { PokeCard } from '../components/PokeCard';
 import { SortArea } from '../components/SortArea';

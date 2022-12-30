@@ -14,39 +14,32 @@ import { Menu } from './Menu';
 
 export const Top = () => {
 
-  const [pokeImg, setPokeImg] = useState<string[]>([]);
   // Swiperに表示するポケモンのリスト。常にピカチュウ(No.025)から始める。
-  const imageIndex: string[] = ['025']
+  const [swipePokeList, setSwipePokeList] = useState<string[]>([]);
+  const randomPokeList: string[] = ['025']
   // 表示するポケモンの最大数
   const displayPokeLimit = 50;
   for (var i = 1; i < displayPokeLimit; i++) {
-    const pokeIndex = ('00' + Math.ceil(Math.random() * totalPokeNum)).slice(-3)
-    imageIndex.push(pokeIndex)
+    const pokeNo = ('00' + Math.ceil(Math.random() * totalPokeNum)).slice(-3)
+    randomPokeList.push(pokeNo)
   }
 
-  // Prevent Hydrate Warning
+  // Prevent Hydration
   useEffect(() => {
-    setPokeImg(imageIndex);
+    setSwipePokeList(randomPokeList);
   }, [])
 
   return (
     <div className="bg-white container mx-auto h-screen pt-20 bg-transparent">
 
-      {/* ---Title--- */}
-      <h1 className="text-2xl md:text-3xl m-4 text-center ">
+      <h1 className="text-2xl md:text-3xl m-4 text-center">
         ポケモン（英語で）言えるかな？
       </h1>
 
-      {/* ---Swiper--- */}
       <div className='w-full'>
-        <Swiper
-          spaceBetween={0}
-          centeredSlides={true}
-          autoplay={{ delay: 4000 }}
-          modules={[Autoplay]}
-        >
-          {pokeImg.map((pokemon: string, index: number) => (
-            <SwiperSlide key={index}>
+        <Swiper spaceBetween={0} centeredSlides={true} autoplay={{ delay: 4000 }} modules={[Autoplay]}>
+          {swipePokeList.map((pokemon: string) => (
+            <SwiperSlide key={pokemon}>
               <div>
                 <div className="mx-auto mb-4 w-24 h-24 md:h-28 md:w-28">
                   <img src={`/pokedex/${pokemon}.png`} alt="pokemon" className='w-24 h-24 md:w-28 md:h-28' />
@@ -57,7 +50,6 @@ export const Top = () => {
         </Swiper>
       </div>
 
-      {/* ---Menu Select--- */}
       <Menu />
       <Credit />
 

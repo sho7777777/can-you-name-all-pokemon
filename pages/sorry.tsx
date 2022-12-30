@@ -11,7 +11,7 @@ export default function RankingUnavailable() {
           <img src="/sorry.png" alt="sorry" className="w-1/3 h-1/3" />
         </div>
       </div>
-      <p className="text-center mt-4 text-2xl text-gray-600">また明日きてね。</p>
+      <p className="text-center mt-4 text-2xl text-gray-600">準備中</p>
     </div>
   )
 }

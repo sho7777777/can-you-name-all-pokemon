@@ -4,3 +4,8 @@ export type Pokemon = {
   nameEn: string;
   origin: string;
 }
+
+export type SortProperty = {
+  value: string,
+  text: string,
+}

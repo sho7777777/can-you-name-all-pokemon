@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 // Constant
-import { totalPokemon } from '../const/constants';
+import { totalPokeNum } from '../const/constants';
 
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -14,18 +14,19 @@ import { Menu } from './Menu';
 
 export const Top = () => {
 
-  const [pokemonImage, setPokemonImage] = useState<string[]>([]);
-  // Always Starts with Pikachu
+  const [pokeImg, setPokeImg] = useState<string[]>([]);
+  // Swiperに表示するポケモンのリスト。常にピカチュウ(No.025)から始める。
   const imageIndex: string[] = ['025']
-  const indexForSwiper = 50;
-  for (var i = 1; i < indexForSwiper; i++) {
-    const pokeIndex = ('00' + Math.ceil(Math.random() * totalPokemon)).slice(-3)
+  // 表示するポケモンの最大数
+  const displayPokeLimit = 50;
+  for (var i = 1; i < displayPokeLimit; i++) {
+    const pokeIndex = ('00' + Math.ceil(Math.random() * totalPokeNum)).slice(-3)
     imageIndex.push(pokeIndex)
   }
 
   // Prevent Hydrate Warning
   useEffect(() => {
-    setPokemonImage(imageIndex);
+    setPokeImg(imageIndex);
   }, [])
 
   return (
@@ -44,7 +45,7 @@ export const Top = () => {
           autoplay={{ delay: 4000 }}
           modules={[Autoplay]}
         >
-          {pokemonImage.map((pokemon: string, index: number) => (
+          {pokeImg.map((pokemon: string, index: number) => (
             <SwiperSlide key={index}>
               <div>
                 <div className="mx-auto mb-4 w-24 h-24 md:h-28 md:w-28">

@@ -1,8 +1,8 @@
 // Component
 import Head from 'next/head';
 import { FC, ReactNode } from 'react';
-import { Footer } from './Footer';
-import { Header } from './Header';
+import { Footer } from './organisms/Footer';
+import { Header } from './organisms/Header';
 
 type Props = {
   children: ReactNode;
@@ -17,18 +17,11 @@ export const Layout: FC<Props> = ({ children }) => {
         <link rel="icon" href="/pikachu.ico" />
       </Head>
 
-      <div className='sticky z-10 top-0 bg-green-200'>
-        <Header />
-      </div>
-
+      <Header />
       <div className="relative">
         {children}
       </div>
-
-      <div className="sticky bottom-0 text-center">
-        <Footer />
-      </div>
-
+      <Footer />
     </div>
   )
 }

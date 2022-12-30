@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { GameCompletedModal } from '../components/GameCompletedModal';
 import { GameOverModal } from '../components/GameOverModal';
-import { RegisterRankingModal } from '../components/RegisterRankingModal';
 import { Layout } from '../components/Layout';
+import { Question } from '../components/Question';
+import { RegisterRankingModal } from '../components/RegisterRankingModal';
 
 // Hook
 import { useShuffle } from '../hooks/useShuffle';
@@ -13,6 +14,7 @@ import { loadPokemon } from '../lib/load-pokemon';
 
 // Type
 import { Pokemon } from '../types/pokemon';
+
 
 export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
 
@@ -34,19 +36,16 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
 
   // 選択肢の作成
   const correctAnswer = shuffledPokemon[questionNo].nameEn;
-  const wrongAnswers = shuffledPokemon.filter(n => n.nameEn != correctAnswer);
-
-  const [wrongAnswerA, setWrongAnswerA] = useState<string>('');
-  const [wrongAnswerB, setWrongAnswerB] = useState<string>('');
-  const [wrongAnswerC, setWrongAnswerC] = useState<string>('');
-
-  const optionSet: string[] = [correctAnswer, wrongAnswerA, wrongAnswerB, wrongAnswerC];
+  const wrongAnswerList = shuffledPokemon.filter(n => n.nameEn != correctAnswer);
+  type wrongOption = { wrongOptionA: string, wrongOptionB: string, wrongOptionC: string }
+  const [wrongOption, setWrongOption] = useState<wrongOption>({ wrongOptionA: "", wrongOptionB: "", wrongOptionC: "" })
+  const optionSet: string[] = [correctAnswer, wrongOption.wrongOptionA, wrongOption.wrongOptionB, wrongOption.wrongOptionC];
 
   const [option, setOption] = useState<string[]>([])
   doShuffle(option)
 
-  // 画像取得に使用
-  const currentPokemonNo = shuffledPokemon[questionNo].No;
+  // For pokemon image.
+  const currentPokeNo: string = shuffledPokemon[questionNo].No;
 
   const checkAnswer = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     (e.target as HTMLButtonElement).value === correctAnswer ? correctAnswerSelected() : setIsGameOver(true);
@@ -66,41 +65,54 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
   }, [shuffleFlg])
 
   useEffect(() => {
-    doShuffle(wrongAnswers);
-    setWrongAnswerA(wrongAnswers[0].nameEn);
-    setWrongAnswerB(wrongAnswers[1].nameEn);
-    setWrongAnswerC(wrongAnswers[2].nameEn);
+    doShuffle(wrongAnswerList);
+    setWrongOption(prevState => ({
+      ...prevState,
+      wrongOptionA: wrongAnswerList[0].nameEn,
+      wrongOptionB: wrongAnswerList[1].nameEn,
+      wrongOptionC: wrongAnswerList[2].nameEn
+    }))
     setOption([...optionSet])
   }, [correctAnswer])
+
+  // Props
+  const questionProps = {
+    questionNo: questionNo + 1,
+    currentPokeNo: currentPokeNo,
+    pokeNameJa: shuffledPokemon[questionNo].nameJa,
+    option: option,
+    checkAnswer: checkAnswer
+  }
+  const GameOverModalProps = {
+    questionNo: questionNo,
+    setQuestionNo: setQuestionNo,
+    setIsGameOver: setIsGameOver,
+    shuffleFlg: shuffleFlg,
+    setShuffleFlg: setShuffleFlag,
+    setShowRankingModal: setShowRankingModal,
+    currentPokeNo: currentPokeNo,
+    correctAnswer: correctAnswer
+  }
+  const gameCompletedModalProps = {
+    setIsGameCompleted: setIsGameCompleted,
+    setShowRankingModal: setShowRankingModal
+  }
+  const registerRankingModalProps = {
+    setShowRankingModal: setShowRankingModal,
+    questionNo: questionNo,
+    setQuestionNo: setQuestionNo,
+    setIsGameOver: setIsGameOver,
+    shuffleFlg: shuffleFlg,
+    setShuffleFlg: setShuffleFlag
+  }
 
   return (
     <Layout>
       <div className="container mx-auto">
-        {/* ---modal--- */}
-        {isGameOver && <GameOverModal questionNo={questionNo} setQuestionNo={setQuestionNo} setIsGameOver={setIsGameOver}
-          shuffleFlg={shuffleFlg} setShuffleFlg={setShuffleFlag} setShowRankingModal={setShowRankingModal} currentPokemonNo={currentPokemonNo} correctAnswer={correctAnswer} />}
-        {isGameCompleted && <GameCompletedModal setIsGameCompleted={setIsGameCompleted} setShowRankingModal={setShowRankingModal} />}
-        {showRankingModal && <RegisterRankingModal setShowRankingModal={setShowRankingModal} questionNo={questionNo} setQuestionNo={setQuestionNo} setIsGameOver={setIsGameOver}
-          shuffleFlg={shuffleFlg} setShuffleFlg={setShuffleFlag} />}
-
-        <div className="h-screen pt-20 md:pt-32">
-          <p className="text-3xl text-center my-4 text-gray-600">言えるかな？</p>
-          <p className="text-2xl text-center mb-2 text-gray-600">現在 {questionNo + 1} / 151 ひき</p>
-
-          <div className="mx-auto w-24 h-24 md:h-28 md:w-28">
-            <img src={`/pokedex/${currentPokemonNo}.png`} alt="" className='w-24 h-24 md:w-28 md:h-28' />
-          </div>
-
-          <h2 className="text-center my-2">{shuffledPokemon[questionNo].nameJa}</h2>
-
-          <div className="flex flex-col justify-between items-center w-3/4 max-w-lg mx-auto gap-y-2 md:flex-row">
-            <button type="button" value={option[0]} onClick={checkAnswer} className="option-btn">{option[0]}</button>
-            <button type="button" value={option[1]} onClick={checkAnswer} className="option-btn">{option[1]}</button>
-            <button type="button" value={option[2]} onClick={checkAnswer} className="option-btn">{option[2]}</button>
-            <button type="button" value={option[3]} onClick={checkAnswer} className="option-btn">{option[3]}</button>
-          </div>
-        </div>
-
+        {isGameOver && <GameOverModal  {...GameOverModalProps} />}
+        {isGameCompleted && <GameCompletedModal {...gameCompletedModalProps} />}
+        {showRankingModal && <RegisterRankingModal {...registerRankingModalProps} />}
+        <Question {...questionProps} />
       </div>
     </Layout>
   )

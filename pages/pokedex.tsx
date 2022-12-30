@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { loadPokemon } from '../lib/load-pokemon';
 
 import { Pokemon } from '../types/pokemon';
+import { PageTitle } from '../components/molecules/PageTitle';
 
 export default function Pokedex(props: { pokeList: Pokemon[] }) {
 
@@ -47,7 +48,7 @@ export default function Pokedex(props: { pokeList: Pokemon[] }) {
   return (
     <Layout>
       {showWarningPopUp && <WarningPopUp setShowWarningPopUp={setShowWarningPopUp} />}
-      <h1 className="text-3xl text-gray-600 text-center mb-3">{pokedex}</h1>
+      <PageTitle margin='my-3' textColor='text-gray-600' textSize='text-2xl' textSizeMd='text-3xl'>{pokedex}</PageTitle>
       <SortArea filterPokeFunc={filterPokeFunc} />
       <div className="container mx-auto bg-slate-500">
         <div className="relative mx-auto grid grid-cols-1 place-items-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

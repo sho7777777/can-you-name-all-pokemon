@@ -1,6 +1,8 @@
-export const Credit = () => {
+import React from 'react'
+
+export const CreditParts = () => {
   return (
-    <div className="flex flex-col justify-center items-center mt-20 h-32 text-xs ">
+    <>
       <p className="text-gray-500">出典</p>
       <p className="text-gray-500">
         ポケモン名（英語）の由来：
@@ -14,6 +16,6 @@ export const Credit = () => {
           &copy;音読さん
         </a>
       </p>
-    </div>
+    </>
   )
 }

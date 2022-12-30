@@ -1,8 +1,6 @@
-// Hook
-import { useRouter } from "next/router";
-
 // Type
 import { FC } from 'react';
+import { GameOverOptionButtons } from "./molecules/GameOverOptionButtons";
 
 type Props = {
   questionNo: number;
@@ -11,23 +9,18 @@ type Props = {
   shuffleFlg: boolean;
   setShuffleFlg: (shuffleflg: boolean) => void;
   setShowRankingModal: (showRankingModal: boolean) => void;
-  currentPokemonNo: string;
+  currentPokeNo: string;
   correctAnswer: string;
 }
 
 export const GameOverModal: FC<Props> = (props) => {
 
-  const { questionNo, setQuestionNo, setIsGameOver, shuffleFlg, setShuffleFlg, setShowRankingModal, currentPokemonNo, correctAnswer } = props;
-  const router = useRouter()
+  const { questionNo, setQuestionNo, setIsGameOver, shuffleFlg, setShuffleFlg, setShowRankingModal, currentPokeNo, correctAnswer } = props;
 
   const restart = () => {
     setQuestionNo(0);
     setIsGameOver(false);
     setShuffleFlg(!shuffleFlg)
-  }
-
-  const returnTopPage = () => {
-    router.push('/')
   }
 
   const registerRanking = () => {
@@ -41,14 +34,10 @@ export const GameOverModal: FC<Props> = (props) => {
         <div className="flex justify-between items-center opacity-100">
           <h4 className="text-gray-600 text-2xl font-bold mx-auto mt-4">Game Over...</h4>
         </div>
-        <img src={`/pokedex/${currentPokemonNo}.png`} alt="" className='w-24 h-24 md:w-28 md:h-28 mx-auto mt-2' />
+        <img src={`/pokedex/${currentPokeNo}.png`} alt="" className='w-24 h-24 md:w-28 md:h-28 mx-auto mt-2' />
         <p className="text-center text-gray-600 mt-2">正解は <span className="text-red-600">{correctAnswer}</span> です。</p>
         <p className="text-gray-600 text-lg mt-2 text-center">あなたの記録は {questionNo} 匹です。</p>
-        <div className="flex justify-between px-2 my-2 mx-2">
-          <button className="btn-basic" onClick={restart}>再チャレンジ！</button>
-          <button className="option-btn text-sm" onClick={registerRanking}>ランキング登録</button>
-          <button className="btn-back-to-top" onClick={returnTopPage}>Topに戻る</button>
-        </div>
+        <GameOverOptionButtons restart={restart} registerRanking={registerRanking} />
       </div>
     </div>
 

@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 import { gameCompletedModalProps, gameOverModalProps, registerRankingModalProps } from '../../types/modal'
-import { GameCompletedModal } from '../organisms/pokemonBattle/GameCompletedModal'
-import { GameOverModal } from '../organisms/pokemonBattle/GameOverModal'
-import { Question } from '../organisms/pokemonBattle/Question'
-import { RegisterRankingModal } from '../organisms/pokemonBattle/RegisterRankingModal'
+import { GameCompletedModal } from '../organisms/PokemonBattle/GameCompletedModal'
+import { GameOverModal } from '../organisms/PokemonBattle/GameOverModal'
+import { Question } from '../organisms/PokemonBattle/Question'
+import { RegisterRankingModal } from '../organisms/PokemonBattle/RegisterRankingModal'
 
 type questionProps = {
   currentPokeNo: string,

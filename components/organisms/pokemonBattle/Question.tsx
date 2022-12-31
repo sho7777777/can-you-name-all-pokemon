@@ -4,7 +4,7 @@ import { QuestionNo } from '../../atoms/QuestionNo'
 import { QuestionPokeName } from '../../atoms/QuestionPokeName'
 import { OptionButtons } from '../../molecules/PokemonBattle/OptionButtons'
 import { PageTitle } from '../../atoms/PageTitle'
-import { TitleArea } from '../pokedex/TitleArea'
+import { TitleArea } from '../Pokedex/TitleArea'
 import { TitleParts } from '../../molecules/PokemonBattle/TitleParts'
 import { ImgParts } from '../../molecules/PokemonBattle/ImgParts'
 

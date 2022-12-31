@@ -1,8 +1,8 @@
 // Components
 import { Layout } from '../components/Layout';
-import { PokeCardArea } from '../components/organisms/pokedex/PokeCardArea';
-import { SortArea } from '../components/organisms/pokedex/SortArea';
-import { WarningPopUp } from '../components/organisms/pokedex/WarningPopUp';
+import { PokeCardArea } from '../components/organisms/Pokedex/PokeCardArea';
+import { SortArea } from '../components/organisms/Pokedex/SortArea';
+import { WarningPopUp } from '../components/organisms/Pokedex/WarningPopUp';
 
 import { totalPokeNum, sortButtonProperties } from '../const/constants';
 
@@ -12,7 +12,7 @@ import { loadPokemon } from '../lib/load-pokemon';
 
 import { Pokemon } from '../types/pokemon';
 import { PageTitle } from '../components/atoms/PageTitle';
-import { TitleArea } from '../components/organisms/pokedex/TitleArea';
+import { TitleArea } from '../components/organisms/Pokedex/TitleArea';
 
 export default function Pokedex(props: { pokeList: Pokemon[] }) {
 

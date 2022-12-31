@@ -1,5 +1,5 @@
 import React from 'react'
-import { PageTitle } from '../../molecules/PageTitle'
+import { PageTitle } from '../../atoms/PageTitle'
 
 export const TitleArea = () => {
   return (

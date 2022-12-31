@@ -4,6 +4,7 @@ import { totalPokeNum } from '../../const/constants';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper';
 import 'swiper/css'
+import { PokeImg } from '../atoms/PokeImg';
 
 export const SwipeContent = () => {
   // List of pokemon which will be displayed on the swiper. Always starts with Pikachu(No.025).
@@ -25,13 +26,9 @@ export const SwipeContent = () => {
   return (
     <div className='w-full'>
       <Swiper spaceBetween={0} centeredSlides={true} autoplay={{ delay: 4000 }} modules={[Autoplay]}>
-        {swipePokeList.map((pokemon: string) => (
-          <SwiperSlide key={pokemon}>
-            <div>
-              <div className="mx-auto mb-4 w-24 h-24 md:h-28 md:w-28">
-                <img src={`/pokedex/${pokemon}.png`} alt="pokemon" className='w-24 h-24 md:w-28 md:h-28' />
-              </div>
-            </div>
+        {swipePokeList.map((pokeNo: string) => (
+          <SwiperSlide key={pokeNo}>
+            <PokeImg alt='pokemon' pokeNo={pokeNo} m='mx-auto' h='h-24' w='w-24' hMd='md:h-28' wMd='md:w-28' />
           </SwiperSlide>
         ))}
       </Swiper>

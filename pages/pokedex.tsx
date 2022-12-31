@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import { loadPokemon } from '../lib/load-pokemon';
 
 import { Pokemon } from '../types/pokemon';
-import { PageTitle } from '../components/molecules/PageTitle';
+import { PageTitle } from '../components/atoms/PageTitle';
 import { TitleArea } from '../components/organisms/pokedex/TitleArea';
 
 export default function Pokedex(props: { pokeList: Pokemon[] }) {
@@ -36,7 +36,7 @@ export default function Pokedex(props: { pokeList: Pokemon[] }) {
     } else {
       let filteredPokeList: Pokemon[]
       if (sortValue == sortIndexForMew) {
-        // Mew is inclued in the last slice.
+        // Mew(No.151) is inclued in the last slice.
         filteredPokeList = allPokemon.slice(sortValue, sortValue + 11)
         setPokeList(filteredPokeList)
       } else {

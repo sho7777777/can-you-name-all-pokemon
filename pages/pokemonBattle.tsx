@@ -1,10 +1,11 @@
 // Component
 import React, { useState, useEffect } from 'react';
 import { GameCompletedModal } from '../components/GameCompletedModal';
-import { GameOverModal } from '../components/GameOverModal';
+import { GameOverModal } from '../components/organisms/pokemonBattle/GameOverModal';
 import { Layout } from '../components/Layout';
-import { Question } from '../components/Question';
+import { Question } from '../components/organisms/pokemonBattle/Question';
 import { RegisterRankingModal } from '../components/RegisterRankingModal';
+import { PokemonBattleTemplate } from '../components/templates/PokemonBattleTemplate';
 
 // Hook
 import { useShuffle } from '../hooks/useShuffle';
@@ -36,6 +37,7 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
 
   // 選択肢の作成
   const correctAnswer = shuffledPokemon[questionNo].nameEn;
+  const pokeOrigin = shuffledPokemon[questionNo].origin;
   const wrongAnswerList = shuffledPokemon.filter(n => n.nameEn != correctAnswer);
   type wrongOption = { wrongOptionA: string, wrongOptionB: string, wrongOptionC: string }
   const [wrongOption, setWrongOption] = useState<wrongOption>({ wrongOptionA: "", wrongOptionB: "", wrongOptionC: "" })
@@ -77,26 +79,29 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
 
   // Props
   const questionProps = {
-    questionNo: questionNo + 1,
     currentPokeNo: currentPokeNo,
-    pokeNameJa: shuffledPokemon[questionNo].nameJa,
     option: option,
+    pokeNameJa: shuffledPokemon[questionNo].nameJa,
+    questionNo: questionNo + 1,
     checkAnswer: checkAnswer
   }
   const GameOverModalProps = {
-    questionNo: questionNo,
-    setQuestionNo: setQuestionNo,
-    setIsGameOver: setIsGameOver,
-    shuffleFlg: shuffleFlg,
-    setShuffleFlg: setShuffleFlag,
-    setShowRankingModal: setShowRankingModal,
+    correctAnswer: correctAnswer,
     currentPokeNo: currentPokeNo,
-    correctAnswer: correctAnswer
+    pokeOrigin: pokeOrigin,
+    questionNo: questionNo,
+    shuffleFlg: shuffleFlg,
+    setIsGameOver: setIsGameOver,
+    setQuestionNo: setQuestionNo,
+    setShowRankingModal: setShowRankingModal,
+    setShuffleFlg: setShuffleFlag,
   }
+
   const gameCompletedModalProps = {
     setIsGameCompleted: setIsGameCompleted,
     setShowRankingModal: setShowRankingModal
   }
+
   const registerRankingModalProps = {
     setShowRankingModal: setShowRankingModal,
     questionNo: questionNo,
@@ -112,7 +117,8 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
         {isGameOver && <GameOverModal  {...GameOverModalProps} />}
         {isGameCompleted && <GameCompletedModal {...gameCompletedModalProps} />}
         {showRankingModal && <RegisterRankingModal {...registerRankingModalProps} />}
-        <Question {...questionProps} />
+
+        <PokemonBattleTemplate {...questionProps} />
       </div>
     </Layout>
   )

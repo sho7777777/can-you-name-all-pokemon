@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
-import { sortButtonProperties } from '../const/constants'
-import { Button } from './Button'
+import { sortButtonProperties } from '../../../const/constants'
+import { Button } from '../../Button'
+import { SortButton } from '../../molecules/SortButton';
 
 type Props = {
   filterPokeFunc: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -13,7 +14,7 @@ export const SortArea: FC<Props> = (props) => {
   return (
     <div className="container grid grid-cols-4 mx-auto text-center md:grid-cols-8">
       {sortButtonProperties.map((buttonProperty, index) => (
-        <Button key={index} buttonStyle='btn-sort' onClick={filterPokeFunc} value={buttonProperty.value} text={buttonProperty.text} />
+        <SortButton key={index} onClick={filterPokeFunc} style='btn-sort' text={buttonProperty.text} value={buttonProperty.value} />
       ))}
     </div>
   )

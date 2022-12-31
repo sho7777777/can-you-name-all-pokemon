@@ -10,8 +10,9 @@ type Props = {
 }
 
 export const PageTitle: FC<Props> = (props) => {
-  const { children, margin, textColor, textSize, textSizeMd, } = props
+  const { children, margin, textColor, textSize, textSizeMd } = props
   return (
+    // <h1 className={`${margin} ${textColor} ${textSize} md:${textSizeMd} text-center`}>
     <h1 className={`${margin} ${textColor} ${textSize} md:${textSizeMd} text-center`}>
       {children}
     </h1>

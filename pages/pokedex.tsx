@@ -1,10 +1,10 @@
 // Components
 import { Layout } from '../components/Layout';
-import { PokeCard } from '../components/PokeCard';
-import { SortArea } from '../components/SortArea';
+import { PokeCardArea } from '../components/organisms/pokedex/PokeCardArea';
+import { SortArea } from '../components/organisms/pokedex/SortArea';
 import { WarningPopUp } from '../components/WarningPopUp';
 
-import { totalPokeNum, sortButtonProperties, pokedex } from '../const/constants';
+import { totalPokeNum, sortButtonProperties } from '../const/constants';
 
 import { useEffect, useState } from 'react';
 
@@ -12,6 +12,7 @@ import { loadPokemon } from '../lib/load-pokemon';
 
 import { Pokemon } from '../types/pokemon';
 import { PageTitle } from '../components/molecules/PageTitle';
+import { TitleArea } from '../components/organisms/pokedex/TitleArea';
 
 export default function Pokedex(props: { pokeList: Pokemon[] }) {
 
@@ -48,11 +49,11 @@ export default function Pokedex(props: { pokeList: Pokemon[] }) {
   return (
     <Layout>
       {showWarningPopUp && <WarningPopUp setShowWarningPopUp={setShowWarningPopUp} />}
-      <PageTitle margin='my-3' textColor='text-gray-600' textSize='text-2xl' textSizeMd='text-3xl'>{pokedex}</PageTitle>
+      <TitleArea />
       <SortArea filterPokeFunc={filterPokeFunc} />
       <div className="container mx-auto bg-slate-500">
         <div className="relative mx-auto grid grid-cols-1 place-items-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          <PokeCard pokeList={pokeList} />
+          <PokeCardArea pokeList={pokeList} />
         </div>
       </div>
     </Layout>

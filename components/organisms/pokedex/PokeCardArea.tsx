@@ -1,13 +1,13 @@
 import React, { FC } from 'react'
-import { PokeCardBack } from './PokeCardBack';
-import { PokeCardFront } from './PokeCardFront';
-import { Pokemon } from '../types/pokemon';
+import { PokeCardBack } from '../../molecules/pokedex/PokeCardBack';
+import { PokeCardFront } from '../../molecules/pokedex/PokeCardFront';
+import { Pokemon } from '../../../types/pokemon';
 
 type Props = {
   pokeList: Pokemon[];
 }
 
-export const PokeCard: FC<Props> = (props) => {
+export const PokeCardArea: FC<Props> = (props) => {
   const { pokeList } = props;
 
   return (

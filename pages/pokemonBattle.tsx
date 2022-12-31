@@ -1,17 +1,12 @@
-// Component
+// Components
 import React, { useState, useEffect } from 'react';
-import { GameCompletedModal } from '../components/GameCompletedModal';
-import { GameOverModal } from '../components/organisms/pokemonBattle/GameOverModal';
 import { Layout } from '../components/Layout';
-import { Question } from '../components/organisms/pokemonBattle/Question';
-import { RegisterRankingModal } from '../components/RegisterRankingModal';
 import { PokemonBattleTemplate } from '../components/templates/PokemonBattleTemplate';
 
-// Hook
+// Hook,lib
 import { useShuffle } from '../hooks/useShuffle';
-
-// lib
 import { loadPokemon } from '../lib/load-pokemon';
+import { gameCompletedModalProps, gameOverModalProps, registerRankingModalProps } from '../types/modal';
 
 // Type
 import { Pokemon } from '../types/pokemon';
@@ -86,7 +81,7 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
     checkAnswer: checkAnswer
   }
 
-  const gameOverModalProps = {
+  const gameOverModalProps: gameOverModalProps = {
     correctAnswer: correctAnswer,
     currentPokeNo: currentPokeNo,
     isGameOver: isGameOver,
@@ -99,13 +94,15 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
     setShuffleFlg: setShuffleFlag,
   }
 
-  const gameCompletedModalProps = {
+  const gameCompletedModalProps: gameCompletedModalProps = {
+    isGameCompleted: isGameCompleted,
     setIsGameCompleted: setIsGameCompleted,
     setShowRankingModal: setShowRankingModal
   }
 
-  const registerRankingModalProps = {
+  const registerRankingModalProps: registerRankingModalProps = {
     questionNo: questionNo,
+    showRankingModal: showRankingModal,
     shuffleFlg: shuffleFlg,
     setIsGameOver: setIsGameOver,
     setQuestionNo: setQuestionNo,
@@ -113,13 +110,12 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
     setShuffleFlg: setShuffleFlag
   }
 
+  const propsList = { questionProps, gameOverModalProps, gameCompletedModalProps, registerRankingModalProps }
+
   return (
     <Layout>
       <div className="container mx-auto">
-        {isGameCompleted && <GameCompletedModal {...gameCompletedModalProps} />}
-        {showRankingModal && <RegisterRankingModal {...registerRankingModalProps} />}
-
-        <PokemonBattleTemplate questionProps={questionProps} gameOverModalProps={gameOverModalProps} gameCompletedModalProps={gameCompletedModalProps} registerRankingModalProps={registerRankingModalProps} />
+        <PokemonBattleTemplate {...propsList} />
       </div>
     </Layout>
   )

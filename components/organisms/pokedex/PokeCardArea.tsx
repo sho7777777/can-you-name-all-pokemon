@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
-import { PokeCardBack } from '../../molecules/pokedex/PokeCardBack';
-import { PokeCardFront } from '../../molecules/pokedex/PokeCardFront';
+import { PokeCardBack } from '../../molecules/Pokedex/PokeCardBack';
+import { PokeCardFront } from '../../molecules/Pokedex/PokeCardFront';
 import { Pokemon } from '../../../types/pokemon';
 
 type Props = {

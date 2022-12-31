@@ -1,8 +1,8 @@
 // Hook
 import { FC, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useFirebase } from '../hooks/useFirebase';
-import { Button } from './Button';
+import { useFirebase } from '../../../hooks/useFirebase';
+import { Button } from '../../Button';
 
 type Props = {
   questionNo: number;

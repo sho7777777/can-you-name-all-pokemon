@@ -12,12 +12,14 @@ export type gameOverModalProps = {
 }
 
 export type gameCompletedModalProps = {
+  isGameCompleted: boolean,
   setIsGameCompleted: (isGameCompleted: boolean) => void,
   setShowRankingModal: (showRankingModal: boolean) => void,
 }
 
 export type registerRankingModalProps = {
   questionNo: number,
+  showRankingModal: boolean,
   shuffleFlg: boolean,
   setIsGameOver: (isGameOver: boolean) => void,
   setQuestionNo: (questionNo: number) => void,

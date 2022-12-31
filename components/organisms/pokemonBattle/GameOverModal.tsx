@@ -1,24 +1,14 @@
-// Type
+// Components
+import { GameOverOptionButtons } from "../../molecules/GameOverModal/GameOverOptionButtons";
+import { ImgParts } from '../../molecules/GameOverModal/ImgParts';
+import { YourScore } from '../../molecules/GameOverModal/YourScore';
+import { TitleParts } from '../../molecules/GameOverModal/TitleParts';
+
+// Types
 import { FC } from 'react';
-import { GameOverOptionButtons } from "../../molecules/gameOverModal/GameOverOptionButtons";
-import { ImgParts } from '../../molecules/gameOverModal/ImgParts';
-import { YourScore } from '../../molecules/gameOverModal/YourScore';
-import { PageTitle } from '../../atoms/PageTitle';
-import { TitleParts } from '../../molecules/gameOverModal/TitleParts';
+import { gameOverModalProps } from '../../../types/modal';
 
-type Props = {
-  correctAnswer: string;
-  currentPokeNo: string;
-  pokeOrigin: string;
-  questionNo: number;
-  shuffleFlg: boolean;
-  setIsGameOver: (isGameOver: boolean) => void;
-  setQuestionNo: (questionNo: number) => void;
-  setShowRankingModal: (showRankingModal: boolean) => void;
-  setShuffleFlg: (shuffleflg: boolean) => void;
-}
-
-export const GameOverModal: FC<Props> = (props) => {
+export const GameOverModal: FC<gameOverModalProps> = (props) => {
 
   const { correctAnswer, currentPokeNo, pokeOrigin, questionNo, shuffleFlg, setIsGameOver, setQuestionNo, setShowRankingModal, setShuffleFlg } = props;
 

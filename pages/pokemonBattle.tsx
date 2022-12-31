@@ -29,8 +29,8 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
 
   // 配列は参照渡しのためポケモン図鑑の並びも変わるので、concatで回避
   // 動作確認後はsliceメソッドは消す
-  // const pokemonList: Pokemon[] = pokemon.pokemonList.concat().slice(0, 6);
-  const pokemonList: Pokemon[] = props.pokeList.concat();
+  const pokemonList: Pokemon[] = props.pokeList.concat().slice(0, 5);
+  // const pokemonList: Pokemon[] = props.pokeList.concat();
 
 
   const [shuffledPokemon, setShuffledPokemon] = useState<Pokemon[]>(pokemonList)
@@ -85,9 +85,11 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
     questionNo: questionNo + 1,
     checkAnswer: checkAnswer
   }
-  const GameOverModalProps = {
+
+  const gameOverModalProps = {
     correctAnswer: correctAnswer,
     currentPokeNo: currentPokeNo,
+    isGameOver: isGameOver,
     pokeOrigin: pokeOrigin,
     questionNo: questionNo,
     shuffleFlg: shuffleFlg,
@@ -103,22 +105,21 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
   }
 
   const registerRankingModalProps = {
-    setShowRankingModal: setShowRankingModal,
     questionNo: questionNo,
-    setQuestionNo: setQuestionNo,
-    setIsGameOver: setIsGameOver,
     shuffleFlg: shuffleFlg,
+    setIsGameOver: setIsGameOver,
+    setQuestionNo: setQuestionNo,
+    setShowRankingModal: setShowRankingModal,
     setShuffleFlg: setShuffleFlag
   }
 
   return (
     <Layout>
       <div className="container mx-auto">
-        {isGameOver && <GameOverModal  {...GameOverModalProps} />}
         {isGameCompleted && <GameCompletedModal {...gameCompletedModalProps} />}
         {showRankingModal && <RegisterRankingModal {...registerRankingModalProps} />}
 
-        <PokemonBattleTemplate {...questionProps} />
+        <PokemonBattleTemplate questionProps={questionProps} gameOverModalProps={gameOverModalProps} gameCompletedModalProps={gameCompletedModalProps} registerRankingModalProps={registerRankingModalProps} />
       </div>
     </Layout>
   )

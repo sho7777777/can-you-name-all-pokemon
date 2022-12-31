@@ -2,7 +2,7 @@
 import { Layout } from '../components/Layout';
 import { PokeCardArea } from '../components/organisms/pokedex/PokeCardArea';
 import { SortArea } from '../components/organisms/pokedex/SortArea';
-import { WarningPopUp } from '../components/WarningPopUp';
+import { WarningPopUp } from '../components/organisms/pokedex/WarningPopUp';
 
 import { totalPokeNum, sortButtonProperties } from '../const/constants';
 

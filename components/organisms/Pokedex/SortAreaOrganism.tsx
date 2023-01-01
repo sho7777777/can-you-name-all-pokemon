@@ -1,13 +1,13 @@
 import React, { FC } from 'react'
 import { sortButtonProperties } from '../../../const/constants'
 import { Button } from '../../Button'
-import { SortButton } from '../../molecules/SortButton';
+import { SortButton } from '../../molecules/Pokedex/SortButtonParts';
 
 type Props = {
   filterPokeFunc: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-export const SortArea: FC<Props> = (props) => {
+export const SortAreaOrganism: FC<Props> = (props) => {
 
   const { filterPokeFunc } = props;
 

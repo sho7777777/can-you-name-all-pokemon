@@ -1,4 +1,4 @@
-import { FooterParts } from "../molecules/FooterParts"
+import { FooterParts } from "../../molecules/LayoutMolecule/FooterParts"
 
 
 export const Footer = () => {

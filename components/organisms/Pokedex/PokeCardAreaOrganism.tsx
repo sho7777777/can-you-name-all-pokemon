@@ -7,7 +7,7 @@ type Props = {
   pokeList: Pokemon[];
 }
 
-export const PokeCardArea: FC<Props> = (props) => {
+export const PokeCardAreaOrganism: FC<Props> = (props) => {
   const { pokeList } = props;
 
   return (

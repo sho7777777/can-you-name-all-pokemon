@@ -4,7 +4,7 @@ import { FC } from 'react';
 
 type Props = {
   onClick?: any;
-  isButtonDisabled: boolean;
+  isButtonDisabled?: boolean;
   buttonStyle: string;
   value?: string;
   text: string;

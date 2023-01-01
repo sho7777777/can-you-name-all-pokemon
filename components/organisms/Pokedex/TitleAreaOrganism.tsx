@@ -1,7 +1,7 @@
 import React from 'react'
 import { PageTitle } from '../../atoms/PageTitle'
 
-export const TitleArea = () => {
+export const TitleAreaOrganism = () => {
   return (
     <>
       <PageTitle margin='my-3' textColor='text-gray-600' textPosition='text-center' textSize='text-2xl' textSizeMd='text-3xl'>ポケモンずかん</PageTitle>

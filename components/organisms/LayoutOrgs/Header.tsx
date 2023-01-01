@@ -1,4 +1,4 @@
-import { HeaderParts } from '../molecules/HeaderParts';
+import { HeaderParts } from '../../molecules/LayoutMolecule/HeaderParts';
 
 export const Header = () => {
 

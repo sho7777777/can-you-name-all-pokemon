@@ -5,7 +5,7 @@ import { MenuCursorPing } from "../../atoms/MenuCursorPing"
 import { MenuParts } from "../../molecules/Top/MenuParts"
 
 
-export const Menu = () => {
+export const MenuOrganism = () => {
   return (
     <div className="flex flex-col justify-center h-32 gap-4 hover:cursor-pointer w-40 mx-auto">
       <MenuParts link="/pokedex">ポケモンずかん</MenuParts>

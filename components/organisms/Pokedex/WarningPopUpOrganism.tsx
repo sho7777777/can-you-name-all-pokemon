@@ -8,7 +8,7 @@ type Props = {
   setShowWarningPopUp: (showWarningPopUp: boolean) => void;
 }
 
-export const WarningPopUp: FC<Props> = (props) => {
+export const WarningPopUpOrganism: FC<Props> = (props) => {
 
   return (
     <div className="absolute bg-black inset-0 h-full bg-opacity-60 flex justify-center z-10">

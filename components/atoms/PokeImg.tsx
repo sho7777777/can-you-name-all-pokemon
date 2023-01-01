@@ -15,8 +15,6 @@ type Props = {
 export const PokeImg: FC<Props> = (props) => {
   const { alt, pokeNo, hover, m, h, w, hMd, wMd, onClick } = props
   return (
-    // <>
     <img src={`/pokedex/${pokeNo}.png`} alt={alt} className={`${hover} ${m} ${h} ${w} ${hMd} ${wMd}`} onClick={onClick} />
-    // </>
   )
 }

@@ -1,4 +1,4 @@
-import { Header } from "../components/Header";
+import { Header } from "../components/organisms/LayoutOrgs/Header";
 
 export default function ServerError() {
   return (
@@ -7,12 +7,12 @@ export default function ServerError() {
         <Header />
       </div>
       <div className="flex justify-center mt-20 h-screen">
-        <div className="w-1/3 h-1/3">
+        <div className="w-1/2 h-1/2 md:w-1/4 md:h-1/4">
           <img src="/500.png" alt="500 page" />
+          <p className="text-center">サーバーエラーが発生しました。</p>
         </div>
 
       </div>
-
     </div>
   )
 }

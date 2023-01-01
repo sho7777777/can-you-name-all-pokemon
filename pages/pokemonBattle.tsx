@@ -1,12 +1,13 @@
 // Components
 import React, { useState, useEffect } from 'react';
-import { Layout } from '../components/Layout';
+import { LayoutTemplate } from '../components/templates/LayoutTemplate';
 import { PokemonBattleTemplate } from '../components/templates/PokemonBattleTemplate';
 
 // Hook,lib
 import { useShuffle } from '../hooks/useShuffle';
 import { loadPokemon } from '../lib/load-pokemon';
 import { gameCompletedModalProps, gameOverModalProps, registerRankingModalProps } from '../types/modal';
+import { useRouter } from 'next/router';
 
 // Type
 import { Pokemon } from '../types/pokemon';
@@ -113,15 +114,16 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
   const propsList = { questionProps, gameOverModalProps, gameCompletedModalProps, registerRankingModalProps }
 
   return (
-    <Layout>
+    <LayoutTemplate>
       <div className="container mx-auto">
         <PokemonBattleTemplate {...propsList} />
       </div>
-    </Layout>
+    </LayoutTemplate>
   )
 }
 
 export async function getStaticProps() {
+  const router = useRouter();
   try {
     const pokeList: Pokemon[] = await loadPokemon();
     return {
@@ -130,6 +132,6 @@ export async function getStaticProps() {
       }
     }
   } catch (err) {
-    console.error(err)
+    router.push('/500')
   }
 }

@@ -1,4 +1,4 @@
-import { Header } from "../components/organisms/Header";
+import { Header } from "../components/organisms/LayoutOrgs/Header";
 
 export default function RankingUnavailable() {
   return (
@@ -7,11 +7,11 @@ export default function RankingUnavailable() {
         <Header />
       </div>
       <div className="flex justify-center mt-20">
-        <div>
-          <img src="/sorry.png" alt="sorry" className="w-1/3 h-1/3" />
+        <div className="w-1/3 h-1/3">
+          <img src="/sorry.png" alt="sorry" />
         </div>
       </div>
-      <p className="text-center mt-4 text-2xl text-gray-600">準備中</p>
+      <p className="text-center mt-4 text-2xl text-gray-600">停止中</p>
     </div>
   )
 }

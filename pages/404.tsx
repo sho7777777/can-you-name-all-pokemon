@@ -1,4 +1,4 @@
-import { Header } from "../components/organisms/Header";
+import { Header } from "../components/organisms/LayoutOrgs/Header";
 
 export default function NotFound() {
   return (
@@ -10,9 +10,7 @@ export default function NotFound() {
         <div className="w-1/3 h-1/3">
           <img src="/404.png" alt="404 page" />
         </div>
-
       </div>
-
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Button } from '../Button'
+import { Button } from '../../Button'
 
 type Props = {
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
@@ -11,6 +11,8 @@ type Props = {
 export const SortButton: FC<Props> = (props) => {
   const { onClick, style, text, value } = props
   return (
-    <Button onClick={onClick} buttonStyle={style} text={text} value={value} />
+    <>
+      <Button onClick={onClick} buttonStyle={style} text={text} value={value} />
+    </>
   )
 }

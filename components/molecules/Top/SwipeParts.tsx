@@ -1,12 +1,12 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { totalPokeNum } from '../../const/constants';
+import { totalPokeNum } from '../../../const/constants';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper';
 import 'swiper/css'
-import { PokeImg } from '../atoms/PokeImg';
+import { PokeImg } from '../../atoms/PokeImg';
 
-export const SwipeContent = () => {
+export const SwipeParts = () => {
   // List of pokemon which will be displayed on the swiper. Always starts with Pikachu(No.025).
   const [swipePokeList, setSwipePokeList] = useState<string[]>([]);
   const randomPokeList: string[] = ['025']

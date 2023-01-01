@@ -1,5 +1,5 @@
 // Component
-import { Layout } from '../components/Layout';
+import { LayoutTemplate } from '../components/templates/LayoutTemplate';
 
 // Hook
 import { useEffect } from 'react';
@@ -8,15 +8,17 @@ import { useFirebase } from '../hooks/useFirebase';
 
 export default function Ranking() {
 
-  const { getRanking, user } = useFirebase();
+  // const { getRanking, user } = useFirebase();
 
-  useEffect(() => {
-    getRanking();
-  }, [])
+  // useEffect(() => {
+  //   getRanking();
+  // }, [])
+
+  const user = [{ name: "aaa", score: 20 }, { name: "bbb", score: 30 }, { name: "ccc", score: 10 }, { name: "ddd", score: 90 }, { name: "eee", score: 120 },]
 
   return (
     <div>
-      <Layout>
+      <LayoutTemplate>
         <div className="container mx-auto pt-3 flex flex-col h-screen">
           <h1 className=" text-center text-3xl text-gray-600 mb-4">ランキング</h1>
           {/* ---Ranking--- */}
@@ -41,7 +43,7 @@ export default function Ranking() {
             </table>
           </div>
         </div>
-      </Layout>
+      </LayoutTemplate>
     </div>
   )
 }

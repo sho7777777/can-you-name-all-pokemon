@@ -25,3 +25,5 @@ export const sortButtonProperties: SortProperty[] = [
   { value: "130", text: "131~140" },
   { value: "140", text: "141~151" },
 ]
+
+export const usrNameMaxLength = 20

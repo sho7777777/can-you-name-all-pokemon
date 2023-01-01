@@ -24,7 +24,7 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
 
   // 配列は参照渡しのためポケモン図鑑の並びも変わるので、concatで回避
   // 動作確認後はsliceメソッドは消す
-  const pokemonList: Pokemon[] = props.pokeList.concat().slice(0, 5);
+  const pokemonList: Pokemon[] = props.pokeList.concat().slice(0, 4);
   // const pokemonList: Pokemon[] = props.pokeList.concat();
 
 

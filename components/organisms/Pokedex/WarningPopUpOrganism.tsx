@@ -6,10 +6,9 @@ import { TitleMolecule } from "../../molecules/Pokedex/WarningPopUp/TitleMolecul
 
 type Props = {
   setShowWarningPopUp: (showWarningPopUp: boolean) => void;
-}
+};
 
 export const WarningPopUpOrganism: FC<Props> = (props) => {
-
   return (
     <div className="absolute bg-black inset-0 h-full bg-opacity-60 flex justify-center z-10">
       <div className="relative bg-white rounded pt-2 max-w-md h-[430px] mt-40">
@@ -19,5 +18,5 @@ export const WarningPopUpOrganism: FC<Props> = (props) => {
         <ButtonMolecule {...props} />
       </div>
     </div>
-  )
-}
+  );
+};

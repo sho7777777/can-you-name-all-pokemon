@@ -5,5 +5,5 @@ export default function NotFound() {
     <div>
       <Template404 />
     </div>
-  )
+  );
 }

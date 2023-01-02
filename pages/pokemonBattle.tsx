@@ -1,18 +1,21 @@
 // Components
-import React, { useState, useEffect } from 'react';
-import { LayoutTemplate } from '../components/templates/LayoutTemplate';
-import { PokemonBattleTemplate } from '../components/templates/PokemonBattleTemplate';
+import React, { useState, useEffect } from "react";
+import { LayoutTemplate } from "../components/templates/LayoutTemplate";
+import { PokemonBattleTemplate } from "../components/templates/PokemonBattleTemplate";
 
 // Hook,lib
-import { useShuffle } from '../hooks/useShuffle';
-import { loadPokemon } from '../lib/load-pokemon';
-import { gameCompModalProps, gameOverModalProps, registerRankingModalProps } from '../types/modal';
+import { useShuffle } from "../hooks/useShuffle";
+import { loadPokemon } from "../lib/load-pokemon";
+import {
+  gameCompModalProps,
+  gameOverModalProps,
+  registerRankingModalProps,
+} from "../types/modal";
 
 // Type
-import { Pokemon } from '../types/pokemon';
+import { Pokemon } from "../types/pokemon";
 
-export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
-
+export default function PokemonBattle(props: { pokeList: Pokemon[] }) {
   const [questionNo, setQuestionNo] = useState<number>(0);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isGameCompleted, setIsGameCompleted] = useState<boolean>(false);
@@ -22,49 +25,66 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
   const { doShuffle } = useShuffle();
 
   const pokemonList: Pokemon[] = props.pokeList;
-  const [shuffledPokemon, setShuffledPokemon] = useState<Pokemon[]>(pokemonList)
+  const [shuffledPokemon, setShuffledPokemon] =
+    useState<Pokemon[]>(pokemonList);
 
   // Creating options.
   const correctAnswer = shuffledPokemon[questionNo].nameEn;
   const pokeOrigin = shuffledPokemon[questionNo].origin;
-  const wrongAnswerList = shuffledPokemon.filter(n => n.nameEn != correctAnswer);
-  type wrongOption = { wrongOptionA: string, wrongOptionB: string, wrongOptionC: string }
-  const [wrongOption, setWrongOption] = useState<wrongOption>({ wrongOptionA: "", wrongOptionB: "", wrongOptionC: "" })
-  const optionSet: string[] = [correctAnswer, wrongOption.wrongOptionA, wrongOption.wrongOptionB, wrongOption.wrongOptionC];
+  const wrongAnswerList = shuffledPokemon.filter(
+    (n) => n.nameEn != correctAnswer
+  );
+  type wrongOption = {
+    wrongOptionA: string;
+    wrongOptionB: string;
+    wrongOptionC: string;
+  };
+  const [wrongOption, setWrongOption] = useState<wrongOption>({
+    wrongOptionA: "",
+    wrongOptionB: "",
+    wrongOptionC: "",
+  });
+  const optionSet: string[] = [
+    correctAnswer,
+    wrongOption.wrongOptionA,
+    wrongOption.wrongOptionB,
+    wrongOption.wrongOptionC,
+  ];
 
-  const [option, setOption] = useState<string[]>([])
-  doShuffle(option)
+  const [option, setOption] = useState<string[]>([]);
+  doShuffle(option);
 
   // For pokemon image.
   const currentPokeNo: string = shuffledPokemon[questionNo].No;
 
   const checkAnswer = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    (e.target as HTMLButtonElement).value === correctAnswer ? correctAnswerSelected() : setIsGameOver(true);
-  }
+    (e.target as HTMLButtonElement).value === correctAnswer
+      ? correctAnswerSelected()
+      : setIsGameOver(true);
+  };
 
   const correctAnswerSelected = () => {
-    questionNo + 1 === shuffledPokemon.length ? (
-      setIsGameCompleted(true),
-      setQuestionNo(questionNo)
-    ) : setQuestionNo(questionNo + 1)
-  }
+    questionNo + 1 === shuffledPokemon.length
+      ? (setIsGameCompleted(true), setQuestionNo(questionNo))
+      : setQuestionNo(questionNo + 1);
+  };
 
   // Update array only when retried.
   useEffect(() => {
-    doShuffle(pokemonList)
-    setShuffledPokemon([...pokemonList])
-  }, [shuffleFlg])
+    doShuffle(pokemonList);
+    setShuffledPokemon([...pokemonList]);
+  }, [shuffleFlg]);
 
   useEffect(() => {
     doShuffle(wrongAnswerList);
-    setWrongOption(prevState => ({
+    setWrongOption((prevState) => ({
       ...prevState,
       wrongOptionA: wrongAnswerList[0].nameEn,
       wrongOptionB: wrongAnswerList[1].nameEn,
-      wrongOptionC: wrongAnswerList[2].nameEn
-    }))
-    setOption([...optionSet])
-  }, [correctAnswer])
+      wrongOptionC: wrongAnswerList[2].nameEn,
+    }));
+    setOption([...optionSet]);
+  }, [correctAnswer]);
 
   // Props
   const questionProps = {
@@ -72,8 +92,8 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
     option: option,
     pokeNameJa: shuffledPokemon[questionNo].nameJa,
     questionNo: questionNo + 1,
-    checkAnswer: checkAnswer
-  }
+    checkAnswer: checkAnswer,
+  };
 
   const gameOverModalProps: gameOverModalProps = {
     correctAnswer: correctAnswer,
@@ -86,13 +106,13 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
     setQuestionNo: setQuestionNo,
     setShowRankingModal: setShowRankingModal,
     setShuffleFlg: setShuffleFlag,
-  }
+  };
 
   const gameCompletedModalProps: gameCompModalProps = {
     isGameCompleted: isGameCompleted,
     setIsGameCompleted: setIsGameCompleted,
-    setShowRankingModal: setShowRankingModal
-  }
+    setShowRankingModal: setShowRankingModal,
+  };
 
   const registerRankingModalProps: registerRankingModalProps = {
     questionNo: questionNo,
@@ -101,10 +121,15 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
     setIsGameOver: setIsGameOver,
     setQuestionNo: setQuestionNo,
     setShowRankingModal: setShowRankingModal,
-    setShuffleFlg: setShuffleFlag
-  }
+    setShuffleFlg: setShuffleFlag,
+  };
 
-  const propsList = { questionProps, gameOverModalProps, gameCompletedModalProps, registerRankingModalProps }
+  const propsList = {
+    questionProps,
+    gameOverModalProps,
+    gameCompletedModalProps,
+    registerRankingModalProps,
+  };
 
   return (
     <LayoutTemplate>
@@ -112,15 +137,14 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
         <PokemonBattleTemplate {...propsList} />
       </div>
     </LayoutTemplate>
-  )
+  );
 }
 
 export async function getStaticProps() {
-
   const pokeList: Pokemon[] = await loadPokemon();
   return {
     props: {
-      pokeList
-    }
-  }
+      pokeList,
+    },
+  };
 }

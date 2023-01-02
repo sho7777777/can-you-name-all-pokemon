@@ -1,4 +1,4 @@
-import { MenuMolecule } from "../../molecules/Top/MenuMolecule"
+import { MenuMolecule } from "../../molecules/Top/MenuMolecule";
 
 export const MenuOrganism = () => {
   return (
@@ -7,5 +7,5 @@ export const MenuOrganism = () => {
       <MenuMolecule link="/pokemonBattle">言えるかな？</MenuMolecule>
       <MenuMolecule link="/ranking">ランキング</MenuMolecule>
     </div>
-  )
-}
+  );
+};

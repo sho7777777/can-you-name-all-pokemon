@@ -5,5 +5,5 @@ export default function ServerError() {
     <div>
       <Template500 />
     </div>
-  )
+  );
 }

@@ -1,5 +1,5 @@
-import { BodyOrganism } from '../organisms/Ranking/BodyOrganism'
-import { TitleOrganism } from '../organisms/Ranking/TitleOrganism'
+import { BodyOrganism } from "../organisms/Ranking/BodyOrganism";
+import { TitleOrganism } from "../organisms/Ranking/TitleOrganism";
 
 export const RankingTemplate = () => {
   return (
@@ -7,5 +7,5 @@ export const RankingTemplate = () => {
       <TitleOrganism />
       <BodyOrganism />
     </div>
-  )
-}
+  );
+};

@@ -17,7 +17,7 @@ export const sortButtonProperties: SortProperty[] = [
   { value: "120", text: "121~130" },
   { value: "130", text: "131~140" },
   { value: "140", text: "141~151" },
-]
+];
 
 export const totalPokeNum: number = 151;
 
@@ -25,6 +25,6 @@ export const totalPokeNum: number = 151;
 export const url: string = "http://localhost:3000/api/pokemon";
 
 // URL For Fetching nameJa, nameEn.
-export const urlSpiecies: string = 'https://pokeapi.co/api/v2/pokemon-species/'
+export const urlSpiecies: string = "https://pokeapi.co/api/v2/pokemon-species/";
 
-export const usrNameMaxLength = 20
+export const usrNameMaxLength = 20;

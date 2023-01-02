@@ -1,5 +1,5 @@
-import { SwiperMolecule } from '../../molecules/Top/SwiperMolecule'
-import { TitleMolecule } from '../../molecules/Top/TitleMolecule'
+import { SwiperMolecule } from "../../molecules/Top/SwiperMolecule";
+import { TitleMolecule } from "../../molecules/Top/TitleMolecule";
 
 export const BodyOrganism = () => {
   return (
@@ -7,5 +7,5 @@ export const BodyOrganism = () => {
       <TitleMolecule />
       <SwiperMolecule />
     </>
-  )
-}
+  );
+};

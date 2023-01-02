@@ -1,11 +1,11 @@
-import { FC, ReactNode } from 'react';
-import { FooterOrganism } from '../organisms/LayoutOrgs/FooterOrganism';
-import { HeaderOrganism } from '../organisms/LayoutOrgs/HeaderOrganism';
-import { HeadOrganism } from '../organisms/LayoutOrgs/HeadOrganism';
+import { FC, ReactNode } from "react";
+import { FooterOrganism } from "../organisms/LayoutOrgs/FooterOrganism";
+import { HeaderOrganism } from "../organisms/LayoutOrgs/HeaderOrganism";
+import { HeadOrganism } from "../organisms/LayoutOrgs/HeadOrganism";
 
 type Props = {
   children: ReactNode;
-}
+};
 
 export const LayoutTemplate: FC<Props> = ({ children }) => {
   return (
@@ -15,5 +15,5 @@ export const LayoutTemplate: FC<Props> = ({ children }) => {
       <div className="relative">{children}</div>
       <FooterOrganism />
     </div>
-  )
-}
+  );
+};

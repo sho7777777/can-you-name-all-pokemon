@@ -1,12 +1,10 @@
-import { FC } from 'react'
+import { FC } from "react";
 
 type Props = {
-  pokeNameJa: string
-}
+  pokeNameJa: string;
+};
 
 export const QuestionPokeNameAtom: FC<Props> = (props) => {
-  const { pokeNameJa } = props
-  return (
-    <h2 className="my-2 text-center">{pokeNameJa}</h2>
-  )
-}
+  const { pokeNameJa } = props;
+  return <h2 className="my-2 text-center">{pokeNameJa}</h2>;
+};

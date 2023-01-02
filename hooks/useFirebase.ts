@@ -29,7 +29,7 @@ export const useFirebase = () => {
       })
       setUser(users)
     } catch (e) {
-      // router.push('/sorry');
+      router.push('/sorry');
     }
   }
 
@@ -41,7 +41,7 @@ export const useFirebase = () => {
           score: score,
         })
     } catch (e) {
-      router.push('/sorry');
+      // router.push('/sorry');
     }
   }
 

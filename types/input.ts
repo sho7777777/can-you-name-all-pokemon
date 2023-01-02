@@ -1,7 +1,6 @@
 import { SetStateAction } from "react";
 import { userNameValidationProps } from "./validation";
 
-
 export type InputPartsProps = {
   registerRanking: () => void,
   userName: string,

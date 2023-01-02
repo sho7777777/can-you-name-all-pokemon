@@ -29,7 +29,7 @@ export const useFirebase = () => {
       })
       setUser(users)
     } catch (e) {
-      router.push('/sorry');
+      // router.push('/sorry');
     }
   }
 

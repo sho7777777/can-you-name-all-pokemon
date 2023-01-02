@@ -11,7 +11,6 @@ import { gameCompModalProps, gameOverModalProps, registerRankingModalProps } fro
 // Type
 import { Pokemon } from '../types/pokemon';
 
-
 export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
 
   const [questionNo, setQuestionNo] = useState<number>(0);
@@ -22,15 +21,10 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
 
   const { doShuffle } = useShuffle();
 
-  // 配列は参照渡しのためポケモン図鑑の並びも変わるので、concatで回避
-  // 動作確認後はsliceメソッドは消す
-  const pokemonList: Pokemon[] = props.pokeList.concat().slice(0, 4);
-  // const pokemonList: Pokemon[] = props.pokeList.concat();
-
-
+  const pokemonList: Pokemon[] = props.pokeList;
   const [shuffledPokemon, setShuffledPokemon] = useState<Pokemon[]>(pokemonList)
 
-  // 選択肢の作成
+  // Creating options.
   const correctAnswer = shuffledPokemon[questionNo].nameEn;
   const pokeOrigin = shuffledPokemon[questionNo].origin;
   const wrongAnswerList = shuffledPokemon.filter(n => n.nameEn != correctAnswer);
@@ -55,7 +49,7 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
     ) : setQuestionNo(questionNo + 1)
   }
 
-  // 再チャレンジ（フラグが更新される）時だけ配列を更新）
+  // Update array only when retried.
   useEffect(() => {
     doShuffle(pokemonList)
     setShuffledPokemon([...pokemonList])

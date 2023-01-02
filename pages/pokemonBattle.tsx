@@ -7,7 +7,6 @@ import { PokemonBattleTemplate } from '../components/templates/PokemonBattleTemp
 import { useShuffle } from '../hooks/useShuffle';
 import { loadPokemon } from '../lib/load-pokemon';
 import { gameCompletedModalProps, gameOverModalProps, registerRankingModalProps } from '../types/modal';
-import { useRouter } from 'next/router';
 
 // Type
 import { Pokemon } from '../types/pokemon';
@@ -123,15 +122,11 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
 }
 
 export async function getStaticProps() {
-  const router = useRouter();
-  try {
-    const pokeList: Pokemon[] = await loadPokemon();
-    return {
-      props: {
-        pokeList
-      }
+
+  const pokeList: Pokemon[] = await loadPokemon();
+  return {
+    props: {
+      pokeList
     }
-  } catch (err) {
-    router.push('/500')
   }
 }

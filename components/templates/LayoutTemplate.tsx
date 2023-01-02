@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
-import { Footer } from '../organisms/LayoutOrgs/Footer';
-import { Header } from '../organisms/LayoutOrgs/Header';
+import { FooterOrganism } from '../organisms/LayoutOrgs/FooterOrganism';
+import { HeaderOrganism } from '../organisms/LayoutOrgs/HeaderOrganism';
 import { HeadOrganism } from '../organisms/LayoutOrgs/HeadOrganism';
 
 type Props = {
@@ -11,9 +11,9 @@ export const LayoutTemplate: FC<Props> = ({ children }) => {
   return (
     <div className="w-full h-full bg-green-50">
       <HeadOrganism />
-      <Header />
+      <HeaderOrganism />
       <div className="relative">{children}</div>
-      <Footer />
+      <FooterOrganism />
     </div>
   )
 }

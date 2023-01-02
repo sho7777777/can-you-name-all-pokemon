@@ -1,16 +1,11 @@
-// Component
-import Link from "next/link"
-import { MenuCursor } from "../../atoms/MenuCursor"
-import { MenuCursorPing } from "../../atoms/MenuCursorPing"
-import { MenuParts } from "../../molecules/Top/MenuParts"
-
+import { MenuMolecule } from "../../molecules/Top/MenuMolecule"
 
 export const MenuOrganism = () => {
   return (
     <div className="flex flex-col justify-center h-32 gap-4 hover:cursor-pointer w-40 mx-auto">
-      <MenuParts link="/pokedex">ポケモンずかん</MenuParts>
-      <MenuParts link="/pokemonBattle">言えるかな？</MenuParts>
-      <MenuParts link="/ranking">ランキング</MenuParts>
+      <MenuMolecule link="/pokedex">ポケモンずかん</MenuMolecule>
+      <MenuMolecule link="/pokemonBattle">言えるかな？</MenuMolecule>
+      <MenuMolecule link="/ranking">ランキング</MenuMolecule>
     </div>
   )
 }

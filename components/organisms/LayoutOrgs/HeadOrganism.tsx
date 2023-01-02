@@ -1,10 +1,10 @@
 import React from 'react'
-import { HeadParts } from '../../molecules/Top/HeadParts'
+import { HeadMolecule } from '../../molecules/Top/HeadMolecule'
 
 export const HeadOrganism = () => {
   return (
     <>
-      <HeadParts />
+      <HeadMolecule />
     </>
   )
 }

@@ -1,16 +1,9 @@
-import { Header } from "../components/organisms/LayoutOrgs/Header";
+import Template404 from "../components/templates/Template404";
 
 export default function NotFound() {
   return (
     <div>
-      <div className='sticky z-10 top-0 bg-green-200'>
-        <Header />
-      </div>
-      <div className="flex justify-center mt-20 h-screen">
-        <div className="w-1/3 h-1/3">
-          <img src="/404.png" alt="404 page" />
-        </div>
-      </div>
+      <Template404 />
     </div>
   )
 }

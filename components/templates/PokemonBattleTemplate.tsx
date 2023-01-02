@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 import { gameCompletedModalProps, gameOverModalProps, registerRankingModalProps } from '../../types/modal'
-import { GameCompletedModal } from '../organisms/PokemonBattle/GameCompletedModal'
-import { GameOverModal } from '../organisms/PokemonBattle/GameOverModal'
-import { Question } from '../organisms/PokemonBattle/Question'
-import { RegisterRankingModal } from '../organisms/PokemonBattle/RegisterRankingModal'
+import { GameCompModalOrganism } from '../organisms/PokemonBattle/GameCompModalOrganism'
+import { GameOverModalOrganism } from '../organisms/PokemonBattle/GameOverModalOrganism'
+import { QuestionOrganism } from '../organisms/PokemonBattle/QuestionOrganism'
+import { RegiRankModalOrganism } from '../organisms/PokemonBattle/RegiRankModalOrganism'
 
 type questionProps = {
   currentPokeNo: string,
@@ -25,10 +25,10 @@ export const PokemonBattleTemplate: FC<Props> = (props) => {
 
   return (
     <>
-      {gameOverModalProps.isGameOver && <GameOverModal  {...gameOverModalProps} />}
-      {gameCompletedModalProps.isGameCompleted && <GameCompletedModal {...gameCompletedModalProps} />}
-      {registerRankingModalProps.showRankingModal && <RegisterRankingModal {...registerRankingModalProps} />}
-      <Question {...questionProps} />
+      {gameCompletedModalProps.isGameCompleted && <GameCompModalOrganism {...gameCompletedModalProps} />}
+      {gameOverModalProps.isGameOver && <GameOverModalOrganism  {...gameOverModalProps} />}
+      {registerRankingModalProps.showRankingModal && <RegiRankModalOrganism {...registerRankingModalProps} />}
+      <QuestionOrganism {...questionProps} />
     </>
 
   )

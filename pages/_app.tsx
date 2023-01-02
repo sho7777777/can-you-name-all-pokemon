@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import { AppProps } from 'next/app'
-import { Loading } from '../components/organisms/CommonOrgs/Loading';
+import { LoadingOrganism } from '../components/organisms/CommonOrgs/LoadingOrganism';
 import { useLoading } from '../hooks/useLoading';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      {loading && <Loading />}
+      {loading && <LoadingOrganism />}
       <Component {...pageProps} />
     </>
   )

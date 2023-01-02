@@ -3,8 +3,6 @@ import { PokedexTemplate } from '../components/templates/PokedexTemplate';
 
 import { loadPokemon } from '../lib/load-pokemon';
 
-import { useRouter } from 'next/router';
-
 import { Pokemon } from '../types/pokemon';
 
 export default function Pokedex(props: { pokeList: Pokemon[] }) {
@@ -19,15 +17,11 @@ export default function Pokedex(props: { pokeList: Pokemon[] }) {
 }
 
 export async function getStaticProps() {
-  const router = useRouter();
-  try {
-    const pokeList: Pokemon[] = await loadPokemon()!;
-    return {
-      props: {
-        pokeList
-      }
+
+  const pokeList: Pokemon[] = await loadPokemon();
+  return {
+    props: {
+      pokeList
     }
-  } catch (err) {
-    router.push('/500')
   }
 }

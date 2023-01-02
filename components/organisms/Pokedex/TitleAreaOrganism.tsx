@@ -1,10 +1,10 @@
 import React from 'react'
-import { PageTitle } from '../../atoms/PageTitle'
+import { TitleMolecule } from '../../molecules/Pokedex/TitleMolecule'
 
 export const TitleAreaOrganism = () => {
   return (
     <>
-      <PageTitle margin='my-3' textColor='text-gray-600' textPosition='text-center' textSize='text-2xl' textSizeMd='text-3xl'>ポケモンずかん</PageTitle>
+      <TitleMolecule />
     </>
   )
 }

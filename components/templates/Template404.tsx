@@ -1,4 +1,4 @@
-import { BodyOrganism } from "../organisms/404/BodyOrganism";
+import { BodyOrganism } from "../organisms/Org404/BodyOrganism";
 import { HeaderOrganism } from "../organisms/LayoutOrgs/HeaderOrganism";
 
 const Template404 = () => {

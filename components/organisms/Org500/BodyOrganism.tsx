@@ -1,4 +1,4 @@
-import { ImgMolecule } from "../../molecules/500/ImgMolecule";
+import { ImgMolecule } from "../../molecules/Mole500/ImgMolecule";
 
 export const BodyOrganism = () => {
   return (

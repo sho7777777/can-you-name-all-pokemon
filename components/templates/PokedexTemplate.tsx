@@ -1,11 +1,12 @@
-import React, { FC, useEffect, useState } from 'react'
-import { totalPokeNum } from '../../const/constants'
-import { Pokemon } from '../../types/pokemon'
-// Organism
+// Components
 import { PokeCardAreaOrganism } from '../organisms/Pokedex/PokeCardAreaOrganism'
 import { SortAreaOrganism } from '../organisms/Pokedex/SortAreaOrganism'
 import { TitleAreaOrganism } from '../organisms/Pokedex/TitleAreaOrganism'
 import { WarningPopUpOrganism } from '../organisms/Pokedex/WarningPopUpOrganism'
+
+import React, { FC, useEffect, useState } from 'react'
+import { totalPokeNum } from '../../const/constants'
+import { Pokemon } from '../../types/pokemon'
 
 type Props = {
   allPokemon: Pokemon[]

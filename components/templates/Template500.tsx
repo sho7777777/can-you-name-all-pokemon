@@ -1,5 +1,4 @@
-import React from 'react'
-import BodyOrganism from '../organisms/500/BodyOrganism'
+import { BodyOrganism } from '../organisms/500/BodyOrganism'
 import { HeaderOrganism } from '../organisms/LayoutOrgs/HeaderOrganism'
 
 export const Template500 = () => {

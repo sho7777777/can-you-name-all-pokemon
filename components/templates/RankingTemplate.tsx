@@ -1,4 +1,3 @@
-import React from 'react'
 import { BodyOrganism } from '../organisms/Ranking/BodyOrganism'
 import { TitleOrganism } from '../organisms/Ranking/TitleOrganism'
 

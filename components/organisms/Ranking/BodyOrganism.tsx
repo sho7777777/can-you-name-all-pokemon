@@ -1,4 +1,3 @@
-import React from 'react'
 import { BodyMolecule } from '../../molecules/Ranking/BodyMolecule'
 
 export const BodyOrganism = () => {

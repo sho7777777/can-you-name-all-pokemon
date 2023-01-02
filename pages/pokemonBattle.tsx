@@ -6,7 +6,7 @@ import { PokemonBattleTemplate } from '../components/templates/PokemonBattleTemp
 // Hook,lib
 import { useShuffle } from '../hooks/useShuffle';
 import { loadPokemon } from '../lib/load-pokemon';
-import { gameCompletedModalProps, gameOverModalProps, registerRankingModalProps } from '../types/modal';
+import { gameCompModalProps, gameOverModalProps, registerRankingModalProps } from '../types/modal';
 
 // Type
 import { Pokemon } from '../types/pokemon';
@@ -94,7 +94,7 @@ export default function PokemonBattle(props: { pokeList: Pokemon[]; }) {
     setShuffleFlg: setShuffleFlag,
   }
 
-  const gameCompletedModalProps: gameCompletedModalProps = {
+  const gameCompletedModalProps: gameCompModalProps = {
     isGameCompleted: isGameCompleted,
     setIsGameCompleted: setIsGameCompleted,
     setShowRankingModal: setShowRankingModal

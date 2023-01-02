@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { PokeImgAtom } from '../../../atoms/PokeImgAtom'
 
 type Props = {

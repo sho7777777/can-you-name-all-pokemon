@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { sortButtonProperties } from '../../../const/constants'
 import { SortButtonMolecule } from '../../molecules/Pokedex/SortButtonMolecule';
 

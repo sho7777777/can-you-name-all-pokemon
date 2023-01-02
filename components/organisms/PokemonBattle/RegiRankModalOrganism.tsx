@@ -1,13 +1,18 @@
-import { FC, SetStateAction, useState } from 'react';
-import { useFirebase } from '../../../hooks/useFirebase';
-import { OptionButtonForRegiRankModalProps } from '../../../types/button';
+// Components
 import { OptionButtonMolecule } from '../../molecules/RegisterCompletedModal/OptionButtonMolecule';
 import { TitleMolecule as RegiCompTitleMolecule } from '../../molecules/RegisterCompletedModal/TitleMolecule';
 import { TitleMolecule as RegiRankTitleMolecule } from '../../molecules/RegisterRankingModal/TitleMolecule';
 import { ButtonMolecule } from '../../molecules/RegisterRankingModal/ButtonMolecule';
 import { InputMolecule } from '../../molecules/RegisterRankingModal/InputMolecule';
-import { userNameValidationProps } from '../../../types/validation';
+
+// Hooks
+import { FC, useState } from 'react';
+import { useFirebase } from '../../../hooks/useFirebase';
 import { useValidation } from '../../../hooks/useValidation';
+
+// Types
+import { OptBtnForRegiRankModalProps } from '../../../types/button';
+import { userNameValidationProps } from '../../../types/validation';
 import { InputPartsProps } from '../../../types/input';
 
 type Props = {
@@ -22,9 +27,7 @@ type Props = {
 export const RegiRankModalOrganism: FC<Props> = (props) => {
 
   const { questionNo, setQuestionNo, setShowRankingModal, setIsGameOver, shuffleFlg, setShuffleFlg } = props
-  const [isRegisterRankingCompleted, setIsRegisterRankingCompleted] = useState<boolean>(false)
-
-  // ユーザー名バリデーション
+  const [userName, setUserName] = useState<string>('');
   const [userNameValidation, setUserNameValidation] = useState<userNameValidationProps>({
     buttonStyle: "mt-2 btn-disabled",
     isButtonDisabled: true,
@@ -32,11 +35,10 @@ export const RegiRankModalOrganism: FC<Props> = (props) => {
     isUserNameExceedsMaxLength: false,
     isUserNameUndefined: true,
   })
+  const [isRegisterRankingCompleted, setIsRegisterRankingCompleted] = useState<boolean>(false)
 
   const { registerValidation } = useValidation()
   const { addRanking } = useFirebase();
-
-  const [userName, setUserName] = useState<string>('');
 
   const registerRanking = () => {
     const isValidName = registerValidation(userName)
@@ -46,7 +48,7 @@ export const RegiRankModalOrganism: FC<Props> = (props) => {
     }
   }
 
-  const OptionButtonForRegiRankModalProps: OptionButtonForRegiRankModalProps = {
+  const OptBtnForRegiRankModalProps: OptBtnForRegiRankModalProps = {
     shuffleFlg: shuffleFlg,
     setIsGameOver: setIsGameOver,
     setQuestionNo: setQuestionNo,
@@ -82,7 +84,7 @@ export const RegiRankModalOrganism: FC<Props> = (props) => {
             <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
               <div className="py-6 px-6 lg:px-8 rounded">
                 <RegiCompTitleMolecule />
-                <OptionButtonMolecule {...OptionButtonForRegiRankModalProps} />
+                <OptionButtonMolecule {...OptBtnForRegiRankModalProps} />
               </div>
             </div>
           </div>

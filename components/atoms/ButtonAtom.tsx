@@ -1,5 +1,3 @@
-
-// Component
 import { FC, ReactNode } from 'react';
 
 type Props = {

@@ -35,13 +35,13 @@ export const useFirebase = () => {
 
   const addRanking = async (name: string, score: number) => {
     try {
-      if (name.length > 0 && name.length < 11)
+      if (name.length > 0 && name.length < 21)
         await addDoc(userRef, {
           name: name,
           score: score,
         })
     } catch (e) {
-      console.log(e);
+      router.push('/sorry');
     }
   }
 

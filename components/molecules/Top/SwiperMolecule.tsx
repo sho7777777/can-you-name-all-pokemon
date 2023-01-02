@@ -1,4 +1,3 @@
-import React from 'react'
 import { useEffect, useState } from 'react';
 import { totalPokeNum } from '../../../const/constants';
 import { Swiper, SwiperSlide } from 'swiper/react';

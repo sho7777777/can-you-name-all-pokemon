@@ -1,4 +1,5 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
+import { totalPokeNum } from '../../const/constants';
 
 type Props = {
   questionNo: number
@@ -7,7 +8,7 @@ type Props = {
 export const QuestionNoAtom: FC<Props> = (props) => {
   const { questionNo } = props
   return (
-    <p className="text-2xl text-center mb-4 text-gray-600">現在 {questionNo} / 151 ひき</p>
+    <p className="text-2xl text-center mb-4 text-gray-600">現在 {questionNo} / {totalPokeNum} ひき</p>
   )
 }
 

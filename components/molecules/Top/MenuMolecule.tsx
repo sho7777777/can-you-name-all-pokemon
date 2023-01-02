@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { MenuCursorAtom } from '../../atoms/MenuCursorAtom'
 import { MenuCursorPingAtom } from '../../atoms/MenuCursorPingAtom'
 import { ReactNode } from 'react';

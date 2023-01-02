@@ -1,4 +1,3 @@
-import React from 'react'
 import { FC } from 'react';
 import { usrNameMaxLength } from '../../../const/constants';
 import { useValidation } from '../../../hooks/useValidation';

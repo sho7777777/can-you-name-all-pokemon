@@ -1,6 +1,4 @@
-
-
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { ButtonAtom } from '../../atoms/ButtonAtom'
 
 type Props = {

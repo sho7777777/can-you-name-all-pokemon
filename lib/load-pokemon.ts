@@ -1,19 +1,16 @@
-// Constant
 import { totalPokeNum, url, urlSpiecies } from "../const/constants";
-
-// Type
 import { Pokemon } from "../types/pokemon";
 
 export const loadPokemon = async () => {
   const pokemonList: Pokemon[] = [];
 
-  // 名前の由来取得
+  // Fetch name origin.
   const origin = await fetch(url).then(res => res.json());
 
   for (var i = 1; i <= totalPokeNum; i++) {
     const pokeman: Pokemon = { No: '', nameJa: '', nameEn: '', origin: '' };
 
-    // 日本語名, 英語名取得
+    // Fetch nameJa, nameEn.
     const urlForName = urlSpiecies + i;
     const res = await fetch(urlForName);
     const data = await res.json();

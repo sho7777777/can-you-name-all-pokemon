@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { useRouter } from 'next/router';
-import { gameCompletedModalProps } from '../../../types/modal';
+import { gameCompModalProps } from '../../../types/modal';
 import { ButtonAtom } from '../../atoms/ButtonAtom';
 
-export const OptionButtonMolecule: FC<gameCompletedModalProps> = (props) => {
+export const OptionButtonMolecule: FC<gameCompModalProps> = (props) => {
   const { setIsGameCompleted, setShowRankingModal } = props
   const router = useRouter();
 

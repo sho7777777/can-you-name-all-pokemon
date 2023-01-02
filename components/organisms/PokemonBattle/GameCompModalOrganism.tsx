@@ -6,9 +6,9 @@ import { TitleMolecule } from '../../molecules/GameCompModal/TitleMolecule';
 
 // Types
 import { FC } from 'react';
-import { gameCompletedModalProps } from '../../../types/modal';
+import { gameCompModalProps } from '../../../types/modal';
 
-export const GameCompModalOrganism: FC<gameCompletedModalProps> = (props) => {
+export const GameCompModalOrganism: FC<gameCompModalProps> = (props) => {
 
   return (
     <div className="absolute bg-black inset-0 bg-opacity-60 flex justify-center items-center z-10">

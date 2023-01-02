@@ -1,4 +1,3 @@
-import React, { FC } from 'react'
 import { PageTitleAtom } from '../../atoms/PageTitleAtom';
 
 export const TitleMolecule = () => {

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { OptionButtonMolecule } from '../../molecules/PokemonBattle/OptionButtonMolecule'
 import { TitleMolecule } from '../../molecules/PokemonBattle/TitleMolecule'
 import { ImgMolecule } from '../../molecules/PokemonBattle/ImgMolecule'

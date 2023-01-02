@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { useRouter } from 'next/router';
-import { OptionButtonForRegiRankModalProps } from '../../../types/button';
+import { OptBtnForRegiRankModalProps } from '../../../types/button';
 import { ButtonAtom } from '../../atoms/ButtonAtom';
 
-export const OptionButtonMolecule: FC<OptionButtonForRegiRankModalProps> = (props) => {
+export const OptionButtonMolecule: FC<OptBtnForRegiRankModalProps> = (props) => {
   const { shuffleFlg, setIsGameOver, setQuestionNo, setShuffleFlg, setShowRankingModal } = props
   const router = useRouter();
 

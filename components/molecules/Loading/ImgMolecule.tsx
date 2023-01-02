@@ -1,4 +1,3 @@
-import React from 'react'
 import { PokeImgAtom } from '../../atoms/PokeImgAtom'
 
 export const ImgMolecule = () => {

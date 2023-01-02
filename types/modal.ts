@@ -11,7 +11,7 @@ export type gameOverModalProps = {
   setShuffleFlg: (shuffleflg: boolean) => void,
 }
 
-export type gameCompletedModalProps = {
+export type gameCompModalProps = {
   isGameCompleted: boolean,
   setIsGameCompleted: (isGameCompleted: boolean) => void,
   setShowRankingModal: (showRankingModal: boolean) => void,

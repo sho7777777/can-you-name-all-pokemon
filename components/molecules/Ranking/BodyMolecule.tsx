@@ -1,15 +1,14 @@
-import React from 'react'
 import { useEffect } from 'react';
 import { useFirebase } from '../../../hooks/useFirebase';
 
 export const BodyMolecule = () => {
 
-  // const { getRanking, user } = useFirebase();
+  const { getRanking, user } = useFirebase();
+  useEffect(() => {
+    getRanking();
+  }, [])
 
-  // useEffect(() => {
-  //   getRanking();
-  // }, [])
-  const user = [{ name: "aaa", score: 20 }, { name: "bbb", score: 30 }, { name: "ccc", score: 10 }, { name: "ddd", score: 90 }, { name: "eee", score: 120 },]
+  // const user = [{ name: "aaa", score: 20 }, { name: "bbb", score: 30 }, { name: "ccc", score: 10 }, { name: "ddd", score: 90 }, { name: "eee", score: 120 },]
 
   return (
     <>

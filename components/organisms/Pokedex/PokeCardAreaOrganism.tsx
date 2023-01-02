@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { CardBackMolecule } from '../../molecules/Pokedex/Card/CardBackMolecule';
 import { CardFrontMolecule } from '../../molecules/Pokedex/Card/CardFrontMolecule';
 import { Pokemon } from '../../../types/pokemon';

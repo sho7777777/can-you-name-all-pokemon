@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { QuestionNoAtom } from '../../atoms/QuestionNoAtom';
 import { PageTitleAtom } from '../../atoms/PageTitleAtom'
 

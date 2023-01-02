@@ -1,12 +1,5 @@
 import { SortProperty } from "../types/pokemon";
 
-export const totalPokeNum: number = 151;
-// ポケモンデータ取得用URL
-export const url: string = "http://localhost:3000/api/pokemon";
-// nameJa, nameEn取得用API
-export const urlSpiecies: string = 'https://pokeapi.co/api/v2/pokemon-species/'
-
-// sortボタン用
 export const sortButtonProperties: SortProperty[] = [
   { value: "151", text: "すべて" },
   { value: "0", text: "1~10" },
@@ -25,5 +18,13 @@ export const sortButtonProperties: SortProperty[] = [
   { value: "130", text: "131~140" },
   { value: "140", text: "141~151" },
 ]
+
+export const totalPokeNum: number = 151;
+
+// URL For Fetching Poke data
+export const url: string = "http://localhost:3000/api/pokemon";
+
+// URL For Fetching nameJa, nameEn.
+export const urlSpiecies: string = 'https://pokeapi.co/api/v2/pokemon-species/'
 
 export const usrNameMaxLength = 20

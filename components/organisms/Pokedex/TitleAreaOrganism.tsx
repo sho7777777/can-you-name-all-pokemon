@@ -1,4 +1,3 @@
-import React from 'react'
 import { TitleMolecule } from '../../molecules/Pokedex/TitleMolecule'
 
 export const TitleAreaOrganism = () => {

@@ -1,16 +1,15 @@
-// Component
 import type { NextPage } from 'next'
-import { Top } from '../components/Top';
-import { Layout } from '../components/Layout'
+import { TopTemplate } from '../components/templates/TopTemplate';
+import { LayoutTemplate } from '../components/templates/LayoutTemplate'
 
 const Home: NextPage = () => {
 
   return (
-    <Layout>
+    <LayoutTemplate>
       <main>
-        <Top />
+        <TopTemplate />
       </main>
-    </Layout>
+    </LayoutTemplate>
   )
 }
 

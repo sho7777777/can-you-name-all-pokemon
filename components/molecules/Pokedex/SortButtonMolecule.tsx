@@ -1,18 +1,19 @@
 import React, { FC } from 'react'
-import { Button } from '../../atoms/Button'
+import { ButtonAtom } from '../../atoms/ButtonAtom'
+import { ReactNode } from 'react';
 
 type Props = {
-  onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
+  children: ReactNode,
   style: string,
-  text: string,
   value: string
+  onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
 }
 
 export const SortButtonMolecule: FC<Props> = (props) => {
-  const { onClick, style, text, value } = props
+  const { children, style, value, onClick } = props
   return (
     <>
-      <Button onClick={onClick} style={style} text={text} value={value} />
+      <ButtonAtom style={style} value={value} onClick={onClick}>{children}</ButtonAtom>
     </>
   )
 }

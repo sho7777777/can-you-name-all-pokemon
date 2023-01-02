@@ -5,9 +5,3 @@ export type userNameValidationProps = {
   isUserNameExceedsMaxLength: boolean,
   isUserNameUndefined: boolean,
 }
-
-export type btnStyleType = {
-  // active: string,
-  active: string,
-  inactive: string
-}

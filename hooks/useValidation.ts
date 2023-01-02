@@ -1,4 +1,3 @@
-import { btnStyle } from "../const/btnStyle"
 import { usrNameMaxLength } from "../const/constants"
 import { inputValidationProps } from "../types/input"
 import { userNameValidationProps } from "../types/validation"
@@ -26,7 +25,7 @@ export const useValidation = () => {
     if (userName === undefined || userName.length === 0) {
       setUserNameValidation((prevState: userNameValidationProps) => ({
         ...prevState,
-        buttonStyle: btnStyle.inactive,
+        buttonStyle: "mt-2 btn-disabled",
         isButtonDisabled: true,
         isCharacterInvalid: false,
         isUserNameExceedsMaxLength: false,
@@ -36,7 +35,7 @@ export const useValidation = () => {
     } else if (userName.length > usrNameMaxLength) {
       setUserNameValidation((prevState: userNameValidationProps) => ({
         ...prevState,
-        buttonStyle: btnStyle.inactive,
+        buttonStyle: "mt-2 btn-disabled",
         isButtonDisabled: true,
         isCharacterInvalid: false,
         isUserNameExceedsMaxLength: true,
@@ -45,14 +44,14 @@ export const useValidation = () => {
     } else if (userName.includes("<") || userName.includes(">")) {
       setUserNameValidation((prevState: userNameValidationProps) => ({
         ...prevState,
-        buttonStyle: btnStyle.inactive,
+        buttonStyle: "mt-2 btn-disabled",
         isButtonDisabled: true,
         isCharacterInvalid: true
       }))
     } else {
       setUserNameValidation((prevState: userNameValidationProps) => ({
         ...prevState,
-        buttonStyle: btnStyle.active,
+        buttonStyle: "mt-2 btn-register",
         isButtonDisabled: false,
         isCharacterInvalid: false,
         isUserNameExceedsMaxLength: false,

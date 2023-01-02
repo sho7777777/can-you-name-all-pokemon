@@ -13,7 +13,7 @@ export const SortAreaOrganism: FC<Props> = (props) => {
   return (
     <div className="container grid grid-cols-4 mx-auto text-center md:grid-cols-8">
       {sortButtonProperties.map((buttonProperty, index) => (
-        <SortButtonMolecule key={index} onClick={filterPokeFunc} style='btn-sort' text={buttonProperty.text} value={buttonProperty.value} />
+        <SortButtonMolecule key={index} onClick={filterPokeFunc} style='btn-sort' value={buttonProperty.value}>{buttonProperty.text}</SortButtonMolecule>
       ))}
     </div>
   )

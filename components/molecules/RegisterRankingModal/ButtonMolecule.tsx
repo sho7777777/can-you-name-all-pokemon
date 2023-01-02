@@ -1,17 +1,17 @@
 import React, { FC } from 'react'
-import { Button } from '../../atoms/Button'
+import { ButtonAtom } from '../../atoms/ButtonAtom'
 
 type Props = {
   registerRanking: () => void,
   isButtonDisabled: boolean,
-  buttonStyle: string,
+  style: string,
 }
 
 export const ButtonMolecule: FC<Props> = (props) => {
-  const { registerRanking, isButtonDisabled, buttonStyle } = props
+  const { registerRanking, isButtonDisabled, style } = props
   return (
     <>
-      <Button onClick={registerRanking} isButtonDisabled={isButtonDisabled} buttonStyle={buttonStyle} text="とうろく" />
+      <ButtonAtom style={style} isButtonDisabled={isButtonDisabled} onClick={registerRanking}>とうろく</ButtonAtom>
     </>
   )
 }

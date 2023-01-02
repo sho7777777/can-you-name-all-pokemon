@@ -9,7 +9,6 @@ import { InputMolecule } from '../../molecules/RegisterRankingModal/InputMolecul
 import { userNameValidationProps } from '../../../types/validation';
 import { useValidation } from '../../../hooks/useValidation';
 import { InputPartsProps } from '../../../types/input';
-import { btnStyle } from '../../../const/btnStyle';
 
 type Props = {
   questionNo: number;
@@ -27,7 +26,7 @@ export const RegiRankModalOrganism: FC<Props> = (props) => {
 
   // ユーザー名バリデーション
   const [userNameValidation, setUserNameValidation] = useState<userNameValidationProps>({
-    buttonStyle: btnStyle.inactive,
+    buttonStyle: "mt-2 btn-disabled",
     isButtonDisabled: true,
     isCharacterInvalid: false,
     isUserNameExceedsMaxLength: false,
@@ -67,21 +66,19 @@ export const RegiRankModalOrganism: FC<Props> = (props) => {
     <div className="absolute bg-black inset-0 bg-opacity-60 flex justify-center items-center z-10">
       {!isRegisterRankingCompleted ? (
         <div id="authentication-modal" className="overflow-y-auto overflow-x-hidden z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex" aria-modal="true" role="dialog">
-          {/* <div className="relative p-4 w-full max-w-md h-full md:h-auto bg-purple-500"> */}
           <div className="relative w-full max-w-md h-full md:h-auto">
-            {/* <div className="relative bg-white rounded-lg shadow dark:bg-gray-700"> */}
             <div className="relative bg-white rounded-lg">
               <div className="py-6 px-6 lg:px-8 rounded">
                 <RegiRankTitleMolecule />
                 <InputMolecule {...InputPartsProps} />
                 <ButtonMolecule registerRanking={registerRanking} isButtonDisabled={userNameValidation.isButtonDisabled}
-                  buttonStyle={userNameValidation.buttonStyle} />
+                  style={userNameValidation.buttonStyle} />
               </div>
             </div>
           </div>
         </div>) : (
         <div id="authentication-modal" className="overflow-y-auto overflow-x-hidden z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex" aria-modal="true" role="dialog">
-          <div className="relative p-4 w-full max-w-md h-full md:h-auto">
+          <div className="relative p-1 w-full max-w-md h-full md:h-auto">
             <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
               <div className="py-6 px-6 lg:px-8 rounded">
                 <RegiCompTitleMolecule />

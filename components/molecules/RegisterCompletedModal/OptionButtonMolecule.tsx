@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { useRouter } from 'next/router';
 import { OptionButtonForRegiRankModalProps } from '../../../types/button';
+import { ButtonAtom } from '../../atoms/ButtonAtom';
 
 export const OptionButtonMolecule: FC<OptionButtonForRegiRankModalProps> = (props) => {
   const { shuffleFlg, setIsGameOver, setQuestionNo, setShuffleFlg, setShowRankingModal } = props
@@ -13,13 +14,14 @@ export const OptionButtonMolecule: FC<OptionButtonForRegiRankModalProps> = (prop
     setShowRankingModal(false);
   }
 
+  const goToRankPage = () => router.push('/ranking')
   const goToTopPage = () => router.push('/')
 
   return (
     <div className="flex flex-row justify-between w-full mx-auto ">
-      <button type="button" className="btn-sort bg-indigo-400 hover:text-black hover:bg-indigo-300 text-sm" onClick={() => router.push('/ranking')}>ランキングをみる</button>
-      <button type="button" className="btn-basic" onClick={restart}>再チャレンジ！</button>
-      <button type="button" className="btn-back-to-top" onClick={goToTopPage}>Topに戻る</button>
+      <ButtonAtom style="btn-register" onClick={goToRankPage}>ランキングをみる</ButtonAtom>
+      <ButtonAtom style="btn-basic" onClick={restart}>再チャレンジ！</ButtonAtom>
+      <ButtonAtom style="btn-back-to-top" onClick={goToTopPage}>Topに戻る</ButtonAtom>
     </div>
   )
 }

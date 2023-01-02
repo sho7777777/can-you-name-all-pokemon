@@ -8,11 +8,12 @@ type Props = {
   textPosition?: string,
   textSize: string,
   textSizeMd: string,
+  options?: string
 }
 
 export const PageTitleAtom: FC<Props> = (props) => {
-  const { children, margin, textColor, textPosition, textSize, textSizeMd } = props
+  const { children, margin, textColor, textPosition, textSize, textSizeMd, options } = props
   return (
-    <h1 className={`${margin} ${textColor} ${textPosition} ${textSize} ${textSizeMd}`}>{children}</h1>
+    <h1 className={`${margin} ${textColor} ${textPosition} ${textSize} ${textSizeMd} ${options}`}>{children}</h1>
   )
 }

@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { ButtonAtom } from '../../../atoms/ButtonAtom';
 
 type Props = {
   setShowWarningPopUp: (showWarningPopUp: boolean) => void;
@@ -14,7 +15,7 @@ export const ButtonMolecule: FC<Props> = (props) => {
 
   return (
     <div className="text-center mt-1">
-      <button className="btn-basic" onClick={closeWarningPopUp}>わかりました</button>
+      <ButtonAtom style="btn-basic" onClick={closeWarningPopUp}>わかりました</ButtonAtom>
     </div>
   )
 }

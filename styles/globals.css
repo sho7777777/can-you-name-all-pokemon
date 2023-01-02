@@ -3,32 +3,32 @@
 @tailwind utilities;
 
 @layer base {
-  .btn-sort {
-    @apply rounded drop-shadow-md hover:text-emerald-400 w-20;
-  }
-
-  .option-btn {
-    @apply rounded bg-green-300 p-1 drop-shadow-md hover:bg-green-200 hover:text-rose-400 w-28;
-  }
-
   .btn-back-to-top {
-    @apply text-black bg-red-500 hover:bg-red-400 rounded p-1;
+    @apply rounded p-2 text-center text-white bg-red-500 hover:bg-red-400  ;
   }
 
   .btn-basic {
-    @apply text-white bg-emerald-600 hover:bg-emerald-400 rounded p-1;
+    @apply rounded p-2 text-center text-white bg-emerald-600 hover:bg-emerald-400;
   }
-
-  .btn-register {
-    @apply text-white bg-blue-700 hover:bg-blue-600 rounded text-sm px-2 py-2 text-center;
-  }
-
+  
   .btn-disabled {
-    @apply text-white bg-gray-500 rounded text-sm px-2 py-2 text-center;
+    @apply rounded p-2 text-center text-white bg-gray-500;
   }
 
   .btn-header {
     @apply hover:text-gray-400 hover:cursor-pointer;
+  }
+
+  .btn-option {
+    @apply rounded bg-green-300 p-1 drop-shadow-md hover:bg-green-200 hover:text-rose-400 w-28;
+  }
+
+  .btn-register {
+    @apply rounded p-2 text-center text-white bg-blue-700 hover:bg-blue-600;
+  }
+
+  .btn-sort {
+    @apply rounded drop-shadow-md hover:text-emerald-400 w-20;
   }
 
 }

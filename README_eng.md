@@ -37,7 +37,6 @@ After lauching it, I did refactoring with Atomic Design.
 
 ## Future improvements
 - Adding rest of pokemon(No.152 ~ No.1008)  
-- 現在ポケモンデータは開発環境、本番環境ともに一部をNext.jsのAPI機能を利用して取得しているが、本番環境をFirestoreから取得する方式に改修  
 - At now, pokemon data is provided with Next.js API route for both DEV and PROD, but I will change it to be provided by Firestore for PROD  
 This is because of the limitation for the request amount Firestore free plan offers(50,000 documents per day).  
 For DEV, Next.js builds app every time I change codes and consumes 151 documents for the pokemon data, so it sometimes reaches request limitation and that's why I get data by using API route.  
